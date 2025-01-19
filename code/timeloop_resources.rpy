@@ -1,7 +1,5 @@
 ﻿init python:
     from random import Random
-    from renpy.loader import transfn
-    from __builtin__ import map as fix_map
     from os import path
 
     timeloop_gui_path = "timeloop/images/gui/"
@@ -407,61 +405,61 @@
             renpy.redraw(self, 0)
             return renderObj
 
-    class timeloop_glitches(renpy.Displayable, Random, NoRollback):
-        def __init__(self, image_name, speed_multipler = .5):
-            super(timeloop_glitches, self).__init__()
-            self.image_name = renpy.easy.displayable(image_name)
-            self.cached_images = []
-            self.speed_multipler = float(speed_multipler)
+    # class timeloop_glitches(renpy.Displayable, Random, NoRollback):
+    #     def __init__(self, image_name, speed_multipler = .5):
+    #         super(timeloop_glitches, self).__init__()
+    #         self.image_name = renpy.easy.displayable(image_name)
+    #         self.cached_images = []
+    #         self.speed_multipler = float(speed_multipler)
 
-        def timeloop_glitches_visit(self):
-            return [i[0] for i in self.cached_images] + [self.image_name]
+    #     def timeloop_glitches_visit(self):
+    #         return [i[0] for i in self.cached_images] + [self.image_name]
 
-        def timeloop_glitches_create_cache(self):
-            self.cached_images = [self.timeloop_glitches_get_random_recolor() for i in xrange(500)]
+    #     def timeloop_glitches_create_cache(self):
+    #         self.cached_images = [self.timeloop_glitches_get_random_recolor() for i in xrange(500)]
 
-        def timeloop_glitches_get_random_crop(self):
-            width, height = fix_map(lambda x: self.timeloop_glitches_rndInt((self.random() * x * .1)), self.base_size)
+    #     def timeloop_glitches_get_random_crop(self):
+    #         width, height = fix_map(lambda x: self.timeloop_glitches_rndInt((self.random() * x * .1)), self.base_size)
 
-            width *= 10
+    #         width *= 10
 
-            x, y = fix_map(lambda x: self.timeloop_glitches_rndInt(self.uniform(.0, (x[1] - x[0]))), zip((width, height), self.base_size))
+    #         x, y = fix_map(lambda x: self.timeloop_glitches_rndInt(self.uniform(.0, (x[1] - x[0]))), zip((width, height), self.base_size))
 
-            return(LiveCrop((x, y, width, height), self.image_name), (x, y), (width, height))
+    #         return(LiveCrop((x, y, width, height), self.image_name), (x, y), (width, height))
 
-        def timeloop_glitches_get_random_recolor(self):
-            crop, pos, size = self.timeloop_glitches_get_random_crop()
-            return(Transform(LiveComposite(size, (0, 0), crop, (0, 0), AlphaMask(Solid(tuple(self.randint(0, 200) for i in xrange(4))), crop)), xzoom = self.uniform(1., 1.5), yzoom = self.uniform(.5, 1.),), pos, size)
+    #     def timeloop_glitches_get_random_recolor(self):
+    #         crop, pos, size = self.timeloop_glitches_get_random_crop()
+    #         return(Transform(LiveComposite(size, (0, 0), crop, (0, 0), AlphaMask(Solid(tuple(self.randint(0, 200) for i in xrange(4))), crop)), xzoom = self.uniform(1., 1.5), yzoom = self.uniform(.5, 1.),), pos, size)
 
-        @staticmethod
-        def timeloop_glitches_rndInt(val):
-            return int(round(float(val)))
+    #     @staticmethod
+    #     def timeloop_glitches_rndInt(val):
+    #         return int(round(float(val)))
 
-        def render(self, width, height, st, at):
-            pic_rend = renpy.render(self.image_name, width, height, st, at)
-            w, h = self.base_size = fix_map(self.timeloop_glitches_rndInt, pic_rend.get_size())
+    #     def render(self, width, height, st, at):
+    #         pic_rend = renpy.render(self.image_name, width, height, st, at)
+    #         w, h = self.base_size = fix_map(self.timeloop_glitches_rndInt, pic_rend.get_size())
 
-            if not self.cached_images:
-                self.timeloop_glitches_create_cache()
+    #         if not self.cached_images:
+    #             self.timeloop_glitches_create_cache()
 
-            renderObj = renpy.Render(w, h)
+    #         renderObj = renpy.Render(w, h)
 
-            if self.randint(0, 9):
-                renderObj.blit(pic_rend, (0, 0))
+    #         if self.randint(0, 9):
+    #             renderObj.blit(pic_rend, (0, 0))
 
-            for i in xrange(self.randint(0, 50)):
-                image_name, pos, old_size = self.choice(self.cached_images)
-                oldX, oldY = old_size
-                surface = renpy.render(image_name, width, height, st, at)
-                sizeX, sizeY = surface.get_size()
-                x, y = pos
-                x -= (float((sizeX - oldX)) / 2.)
-                y -= (float((sizeY - oldY)) / 2.)
-                x += (sizeX * self.uniform(-.2, .2))
-                renderObj.blit(renpy.render(image_name, width, height, st, at), tuple(fix_map(self.timeloop_glitches_rndInt, (x, y))))
+    #         for i in xrange(self.randint(0, 50)):
+    #             image_name, pos, old_size = self.choice(self.cached_images)
+    #             oldX, oldY = old_size
+    #             surface = renpy.render(image_name, width, height, st, at)
+    #             sizeX, sizeY = surface.get_size()
+    #             x, y = pos
+    #             x -= (float((sizeX - oldX)) / 2.)
+    #             y -= (float((sizeY - oldY)) / 2.)
+    #             x += (sizeX * self.uniform(-.2, .2))
+    #             renderObj.blit(renpy.render(image_name, width, height, st, at), tuple(fix_map(self.timeloop_glitches_rndInt, (x, y))))
 
-            renpy.redraw(self, (self.random() * self.speed_multipler))
-            return renderObj
+    #         renpy.redraw(self, (self.random() * self.speed_multipler))
+    #         return renderObj
 
 init:
     image timeloop_part_one_main_menu = Movie(fps = 45, play = timeloop_gui_path + "main_menu_part_one/timeloop_part_one_main_menu.webm")
@@ -470,8 +468,8 @@ init:
     image tl_stars_anim = timeloop_frame_animation("timeloop/images/bg/anim_bg/tl_stars/stars", 2, 1.5, True, Dissolve(1.5))
     image bg tl_int_catacombs_living_celling_blurred = im.Blur("timeloop/images/bg/part1/tl_int_catacombs_living_celling.png", 2)
 
-    image timeloop_part_one_main_menu_1of3_glitch = timeloop_glitches(timeloop_gui_path + "main_menu/part1/1of3_static.png", 1)
-    image timeloop_text = timeloop_glitches(timeloop_gui_path + "main_menu_part_one/timeloop_text.png")
+    # image timeloop_part_one_main_menu_1of3_glitch = timeloop_glitches(timeloop_gui_path + "main_menu/part1/1of3_static.png", 1)
+    # image timeloop_text = timeloop_glitches(timeloop_gui_path + "main_menu_part_one/timeloop_text.png")
 
     $ tl_transition = ImageDissolve(timeloop_gui_path + "transitions/glitch.png", 2, 50, reverse = False)
     $ tl_glitch_transition = MultipleTransition([True, Dissolve(0.5), "timeloop/images/gui/transitions/glitch/1.png", Pause(1.0), "timeloop/images/gui/transitions/glitch/2.png", dissolve, True])
