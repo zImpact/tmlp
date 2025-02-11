@@ -2,290 +2,299 @@
     from random import Random
     from os import path
 
-    timeloop_gui_path = "timeloop/images/gui/"
+    tmlp_gui_path = "tmlp/images/gui/"
 
-    timeloop_thumb = timeloop_gui_path + "preferences/thumb.png"
+    tmlp_thumb = tmlp_gui_path + "preferences/thumb.png"
+
+    tmlp_mod_name = "tmlp"
+    tmlp_prefix = tmlp_mod_name + "_"
 
     for file_name in renpy.list_files():
-        if "timeloop" in file_name:
+        if tmlp_mod_name in file_name:
             file_path = path.splitext(path.basename(file_name))[0]
 
-            if file_name.startswith("timeloop/images/bg/"):
+            if file_name.startswith(tmlp_mod_name + "/images/bg/"):
+                bg_name = "bg " + tmlp_prefix + file_path
+
                 if file_name.endswith(".ogv"):
-                    renpy.image("bg " + file_path, Movie(fps = 45, play = file_name))
+                    renpy.image(bg_name, Movie(fps=45, play=file_name))
 
                 else:
-                    renpy.image("bg " + file_path, file_name)
+                    renpy.image(bg_name, file_name)
 
-            elif file_name.startswith("timeloop/images/gui/"):
-                renpy.image(file_path, file_name)
+            elif file_name.startswith(tmlp_mod_name + "/images/sprites/"):
+                renpy.image(
+                    tmlp_prefix + file_path,
+                    ConditionSwitch(
+                        "persistent.sprite_time == 'sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
+                        "persistent.sprite_time == 'night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
+                        True, file_name
+                    )
+                )
 
-            elif file_name.startswith("timeloop/images/sprites/"):
-                renpy.image(file_path, ConditionSwitch("persistent.sprite_time == 'sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)), "persistent.sprite_time == 'night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)), True, file_name))
+            elif file_name.startswith(tmlp_mod_name + "/sounds/"):
+                globals()[tmlp_prefix + file_path] = file_name
 
-            elif file_name.startswith("timeloop/sounds/"):
-                globals()[file_path] = file_name
+    tmlp_std_set_for_preview = {}
+    tmlp_std_set = {}
+    store.tmlp_colors = {}
+    store.tmlp_names = {}
+    store.tmlp_names_list = []
+    tmlp_speaker_color = "speaker_color"
 
-    timeloop_std_set_for_preview = {}
-    timeloop_std_set = {}
-    store.timeloop_colors = {}
-    store.timeloop_names = {}
-    store.timeloop_names_list = []
-    timeloop_speaker_color = "speaker_color"
+    store.tmlp_names_list.append("tmlp_narrator")
 
-    store.timeloop_names_list.append("tl_narrator")
+    store.tmlp_names_list.append("tmlp_th")
 
-    store.timeloop_names_list.append("tl_th")
+    tmlp_colors["tmlp_din"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_names["tmlp_din"] = "Дин"
+    store.tmlp_names_list.append("tmlp_din")
 
-    timeloop_colors["tl_din"] = {"speaker_color": (85, 19, 19, 255)}
-    timeloop_names["tl_din"] = "Дин"
-    store.timeloop_names_list.append("tl_din")
+    tmlp_colors["tmlp_dinp"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_names["tmlp_dinp"] = "Пионер"
+    store.tmlp_names_list.append("tmlp_dinp")
 
-    timeloop_colors["tl_dinp"] = {"speaker_color": (85, 19, 19, 255)}
-    timeloop_names["tl_dinp"] = "Пионер"
-    store.timeloop_names_list.append("tl_dinp")
+    tmlp_colors["tmlp_pyan"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_names["tmlp_pyan"] = "Пьяница"
+    store.tmlp_names_list.append("tmlp_pyan")
 
-    timeloop_colors["tl_pyan"] = {"speaker_color": (85, 19, 19, 255)}
-    timeloop_names["tl_pyan"] = "Пьяница"
-    store.timeloop_names_list.append("tl_pyan")
+    tmlp_colors["tmlp_pyap"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_names["tmlp_pyap"] = "Пионер"
+    store.tmlp_names_list.append("tmlp_pyap")
 
-    timeloop_colors["tl_pyap"] = {"speaker_color": (85, 19, 19, 255)}
-    timeloop_names["tl_pyap"] = "Пионер"
-    store.timeloop_names_list.append("tl_pyap")
+    tmlp_colors["tmlp_plyaj"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_names["tmlp_plyaj"] = "Пляжник"
+    store.tmlp_names_list.append("tmlp_plyaj")
 
-    timeloop_colors["tl_plyaj"] = {"speaker_color": (85, 19, 19, 255)}
-    timeloop_names["tl_plyaj"] = "Пляжник"
-    store.timeloop_names_list.append("tl_plyaj")
+    tmlp_colors["tmlp_plyajp"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_names["tmlp_plyajp"] = "Пионер"
+    store.tmlp_names_list.append("tmlp_plyajp")
 
-    timeloop_colors["tl_plyajp"] = {"speaker_color": (85, 19, 19, 255)}
-    timeloop_names["tl_plyajp"] = "Пионер"
-    store.timeloop_names_list.append("tl_plyajp")
+    tmlp_colors["tmlp_voice"] = {"speaker_color": (225, 221, 125, 255)}
+    tmlp_names["tmlp_voice"] = "Голос"
+    store.tmlp_names_list.append("tmlp_voice")
 
-    timeloop_colors["tl_voice"] = {"speaker_color": (225, 221, 125, 255)}
-    timeloop_names["tl_voice"] = "Голос"
-    store.timeloop_names_list.append("tl_voice")
+    tmlp_colors["tmlp_sam"] = {"speaker_color": (225, 221, 125, 255)}
+    tmlp_names["tmlp_sam"] = "Семён"
+    store.tmlp_names_list.append("tmlp_sam")
 
-    timeloop_colors["tl_sam"] = {"speaker_color": (225, 221, 125, 255)}
-    timeloop_names["tl_sam"] = "Семён"
-    store.timeloop_names_list.append("tl_sam")
+    tmlp_colors["tmlp_myself"] = {"speaker_color": (6, 91, 13, 255)}
+    tmlp_names["tmlp_myself"] = "Я"
+    store.tmlp_names_list.append("tmlp_myself")
 
-    timeloop_colors["tl_myself"] = {"speaker_color": (6, 91, 13, 255)}
-    timeloop_names["tl_myself"] = "Я"
-    store.timeloop_names_list.append("tl_myself")
+    tmlp_colors["tmlp_el"] = {"speaker_color": (205, 205, 0, 255)}
+    tmlp_names["tmlp_el"] = "Электроник"
+    store.tmlp_names_list.append("tmlp_el")
 
-    timeloop_colors["tl_el"] = {"speaker_color": (205, 205, 0, 255)}
-    timeloop_names["tl_el"] = "Электроник"
-    store.timeloop_names_list.append("tl_el")
+    tmlp_colors["tmlp_un"] = {"speaker_color": (170, 100, 217, 255)}
+    tmlp_names["tmlp_un"] = "Леночка"
+    store.tmlp_names_list.append("tmlp_un")
 
-    timeloop_colors["tl_un"] = {"speaker_color": (170, 100, 217, 255)}
-    timeloop_names["tl_un"] = "Леночка"
-    store.timeloop_names_list.append("tl_un")
+    tmlp_colors["tmlp_dv"] = {"speaker_color": (210, 139, 16, 255)}
+    tmlp_names["tmlp_dv"] = "Двачевская"
+    store.tmlp_names_list.append("tmlp_dv")
 
-    timeloop_colors["tl_dv"] = {"speaker_color": (210, 139, 16, 255)}
-    timeloop_names["tl_dv"] = "Двачевская"
-    store.timeloop_names_list.append("tl_dv")
+    tmlp_colors["tmlp_sl"] = {"speaker_color": (214, 176, 0, 255)}
+    tmlp_names["tmlp_sl"] = "Славяна"
+    store.tmlp_names_list.append("tmlp_sl")
 
-    timeloop_colors["tl_sl"] = {"speaker_color": (214, 176, 0, 255)}
-    timeloop_names["tl_sl"] = "Славяна"
-    store.timeloop_names_list.append("tl_sl")
+    tmlp_colors["tmlp_us"] = {"speaker_color": (234, 55, 0, 255)}
+    tmlp_names["tmlp_us"] = "Мелкая"
+    store.tmlp_names_list.append("tmlp_us")
 
-    timeloop_colors["tl_us"] = {"speaker_color": (234, 55, 0, 255)}
-    timeloop_names["tl_us"] = "Мелкая"
-    store.timeloop_names_list.append("tl_us")
+    tmlp_colors["tmlp_mt"] = {"speaker_color": (0, 182, 39, 255)}
+    tmlp_names["tmlp_mt"] = "Вожатая"
+    store.tmlp_names_list.append("tmlp_mt")
 
-    timeloop_colors["tl_mt"] = {"speaker_color": (0, 182, 39, 255)}
-    timeloop_names["tl_mt"] = "Вожатая"
-    store.timeloop_names_list.append("tl_mt")
+    tmlp_colors["tmlp_cs"] = {"speaker_color": (134, 134, 230, 255)}
+    tmlp_names["tmlp_cs"] = "Медсестра"
+    store.tmlp_names_list.append("tmlp_cs")
 
-    timeloop_colors["tl_cs"] = {"speaker_color": (134, 134, 230, 255)}
-    timeloop_names["tl_cs"] = "Медсестра"
-    store.timeloop_names_list.append("tl_cs")
+    tmlp_colors["tmlp_mz"] = {"speaker_color": (84, 129, 219, 255)}
+    tmlp_names["tmlp_mz"] = "Библиотекарша"
+    store.tmlp_names_list.append("tmlp_mz")
 
-    timeloop_colors["tl_mz"] = {"speaker_color": (84, 129, 219, 255)}
-    timeloop_names["tl_mz"] = "Библиотекарша"
-    store.timeloop_names_list.append("tl_mz")
+    tmlp_colors["tmlp_mi"] = {"speaker_color": (0, 180, 207, 255)}
+    tmlp_names["tmlp_mi"] = "Мику"
+    store.tmlp_names_list.append("tmlp_mi")
 
-    timeloop_colors["tl_mi"] = {"speaker_color": (0, 180, 207, 255)}
-    timeloop_names["tl_mi"] = "Мику"
-    store.timeloop_names_list.append("tl_mi")
+    tmlp_colors["tmlp_uv"] = {"speaker_color": (64, 208, 0, 255)}
+    tmlp_names["tmlp_uv"] = "Юля"
+    store.tmlp_names_list.append("tmlp_uv")
 
-    timeloop_colors["tl_uv"] = {"speaker_color": (64, 208, 0, 255)}
-    timeloop_names["tl_uv"] = "Юля"
-    store.timeloop_names_list.append("tl_uv")
+    tmlp_colors["tmlp_sh"] = {"speaker_color": (205, 194, 18, 255)}
+    tmlp_names["tmlp_sh"] = "Шурик"
+    store.tmlp_names_list.append("tmlp_sh")
 
-    timeloop_colors["tl_sh"] = {"speaker_color": (205, 194, 18, 255)}
-    timeloop_names["tl_sh"] = "Шурик"
-    store.timeloop_names_list.append("tl_sh")
+    tmlp_colors["tmlp_pi"] = {"speaker_color": (230, 0, 0, 255)}
+    tmlp_names["tmlp_pi"] = "Пионер"
+    store.tmlp_names_list.append("tmlp_pi")
 
-    timeloop_colors["tl_pi"] = {"speaker_color": (230, 0, 0, 255)}
-    timeloop_names["tl_pi"] = "Пионер"
-    store.timeloop_names_list.append("tl_pi")
+    tmlp_colors["tmlp_bush"] = {"speaker_color": (192, 192, 192, 255)}
+    tmlp_names["tmlp_bush"] = "Голос"
+    store.tmlp_names_list.append("tmlp_bush")
 
-    timeloop_colors["tl_bush"] = {"speaker_color": (192, 192, 192, 255)}
-    timeloop_names["tl_bush"] = "Голос"
-    store.timeloop_names_list.append("tl_bush")
-
-    def timeloop_char_define(x, is_nvl = False):
+    def tmlp_char_define(x, is_nvl = False):
         global DynamicCharacter
         global nvl
-        global timeloop_store
-        global timeloop_speaker_color
-        timeloop_gl = globals()
+        global tmlp_store
+        global tmlp_speaker_color
+        tmlp_gl = globals()
 
-        if x == "tl_narrator":
+        if x == "tmlp_narrator":
             if is_nvl:
-                timeloop_gl["tl_narrator"] = Character(None, kind = nvl, what_style = "timeloop_text_style", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_narrator"] = Character(None, kind = nvl, what_style = "tmlp_text_style", ctc = "none", ctc_position = "fixed")
 
             else:
-                timeloop_gl["tl_narrator"] = Character(None, what_style = "timeloop_text_style", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_narrator"] = Character(None, what_style = "tmlp_text_style", ctc = "none", ctc_position = "fixed")
 
             return
 
-        if x == "tl_th":
+        if x == "tmlp_th":
             if  is_nvl:
-                timeloop_gl["tl_th"] = Character(None, kind = nvl, what_style = "timeloop_text_style", what_prefix = "~ ", what_suffix = " ~", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_th"] = Character(None, kind = nvl, what_style = "tmlp_text_style", what_prefix = "~ ", what_suffix = " ~", ctc = "none", ctc_position = "fixed")
 
             else:
-                timeloop_gl["tl_th"] = Character(None, what_style = "timeloop_text_style", what_prefix = "~ ", what_suffix = " ~", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_th"] = Character(None, what_style = "tmlp_text_style", what_prefix = "~ ", what_suffix = " ~", ctc = "none", ctc_position = "fixed")
 
             return
 
         if is_nvl:
-            timeloop_gl[x] = DynamicCharacter("%s_name" % x, color = store.timeloop_colors[x][timeloop_speaker_color], kind = nvl, what_style = "timeloop_text_style", who_suffix = ":", ctc = "none", ctc_position = "fixed")
-            timeloop_gl["%s_name" % x] = store.timeloop_names[x]
+            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color = store.tmlp_colors[x][tmlp_speaker_color], kind = nvl, what_style = "tmlp_text_style", who_suffix = ":", ctc = "none", ctc_position = "fixed")
+            tmlp_gl["%s_name" % x] = store.tmlp_names[x]
 
         else:
-            timeloop_gl[x] = DynamicCharacter("%s_name" % x, color = store.timeloop_colors[x][timeloop_speaker_color], what_style = "timeloop_text_style", ctc = "none", ctc_position = "fixed")
-            timeloop_gl["%s_name" % x] = store.timeloop_names[x]
+            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color = store.tmlp_colors[x][tmlp_speaker_color], what_style = "tmlp_text_style", ctc = "none", ctc_position = "fixed")
+            tmlp_gl["%s_name" % x] = store.tmlp_names[x]
 
-    def timeloop_set_mode_adv():
+    def tmlp_set_mode_adv():
         nvl_clear()
         
         global menu
         menu = renpy.display_menu
         
-        global timeloop_store
+        global tmlp_store
 
-        for x in store.timeloop_names_list:
-            timeloop_char_define(x)
+        for x in store.tmlp_names_list:
+            tmlp_char_define(x)
 
-    def timeloop_set_mode_nvl():
+    def tmlp_set_mode_nvl():
         nvl_clear()
         
         global menu
         menu = nvl_menu
         
-        global tl_narrator
-        global tl_th
-        tl_narrator_nvl = tl_narrator
-        th_nvl = tl_th
+        global tmlp_narrator
+        global tmlp_th
+        tmlp_narrator_nvl = tmlp_narrator
+        th_nvl = tmlp_th
         
-        global timeloop_store
+        global tmlp_store
         
-        for x in store.timeloop_names_list:
-            timeloop_char_define(x, True)
+        for x in store.tmlp_names_list:
+            tmlp_char_define(x, True)
 
-    def timeloop_reload_names():
-        global timeloop_store
+    def tmlp_reload_names():
+        global tmlp_store
 
-        for x in store.timeloop_names_list:
-            timeloop_char_define(x)
+        for x in store.tmlp_names_list:
+            tmlp_char_define(x)
 
-    timeloop_reload_names()
+    tmlp_reload_names()
 
-    def timeloop_day_intro(day_numeral, tl_save_name, text_output = "adv", tl_part = "one"):
+    def tmlp_day_intro(day_numeral, tmlp_save_name, text_output = "adv", tmlp_part = "one"):
         global save_name
         
-        tl_part_one_introes_path = timeloop_gui_path + "part_one_introes/part_one_day_"
-        tl_part_two_intro_path = timeloop_gui_path + "part_two_intro/part_two.webm"
-        tl_part_three_intro_path = timeloop_gui_path + "part_three_intro/part_three.webm"
+        tmlp_part_one_introes_path = tmlp_gui_path + "part_one_introes/part_one_day_"
+        tmlp_part_two_intro_path = tmlp_gui_path + "part_two_intro/part_two.webm"
+        tmlp_part_three_intro_path = tmlp_gui_path + "part_three_intro/part_three.webm"
         
-        save_name = tl_save_name
+        save_name = tmlp_save_name
 
         renpy.pause(1, hard = True)
 
-        if tl_part == "one":
-            renpy.movie_cutscene(tl_part_one_introes_path + str(day_numeral) + ".webm")
+        if tmlp_part == "one":
+            renpy.movie_cutscene(tmlp_part_one_introes_path + str(day_numeral) + ".webm")
 
-        elif tl_part == "two":
-            renpy.movie_cutscene(tl_part_two_intro_path)
+        elif tmlp_part == "two":
+            renpy.movie_cutscene(tmlp_part_two_intro_path)
 
-        elif tl_part == "three":
-            renpy.movie_cutscene(tl_part_three_intro_path)
+        elif tmlp_part == "three":
+            renpy.movie_cutscene(tmlp_part_three_intro_path)
         
         renpy.pause(1, hard = True)
         
         if text_output == "adv":
-            timeloop_set_mode_adv()
+            tmlp_set_mode_adv()
 
         else:
-            timeloop_set_mode_nvl()
+            tmlp_set_mode_nvl()
 
-    def timeloop_set_zone(zone, lbl, reload_dict = False):
-        global timeloop_map_zones
+    def tmlp_set_zone(zone, lbl, reload_dict = False):
+        global tmlp_map_zones
 
         if reload_dict:
-            timeloop_map_zones = {}
+            tmlp_map_zones = {}
 
-        timeloop_map_zones[zone] = lbl
+        tmlp_map_zones[zone] = lbl
 
-    def timeloop_disable_current_zone():
-        global timeloop_map_zones
+    def tmlp_disable_current_zone():
+        global tmlp_map_zones
 
-        a = timeloop_map_zones.pop(timeloop_last_zone)
+        a = tmlp_map_zones.pop(tmlp_last_zone)
 
-    def timeloop_day():
+    def tmlp_day():
         persistent.timeofday = "day"
         persistent.sprite_time = "day"
 
-    def timeloop_city_day():
+    def tmlp_city_day():
         persistent.timeofday = "city_day"
         persistent.sprite_time = "day"
 
-    def timeloop_night():
+    def tmlp_night():
         persistent.timeofday = "night"
         persistent.sprite_time = "night"
     
-    def timeloop_city_night():
+    def tmlp_city_night():
         persistent.timeofday = "city_night"
         persistent.sprite_time = "night"
 
-    def timeloop_nightmare():
+    def tmlp_nightmare():
         persistent.timeofday = "nightmare"
         persistent.sprite_time = "night"
 
-    def timeloop_old():
+    def tmlp_old():
         persistent.timeofday = "old"
         persistent.sprite_time = "day"
 
-    def timeloop_prologue():
+    def tmlp_prologue():
         persistent.timeofday = "prologue"
         persistent.sprite_time = "night"
     
-    def timeloop_city_prologue():
+    def tmlp_city_prologue():
         persistent.timeofday = "city_prologue"
         persistent.sprite_time = "night"
 
-    def timeloop_sunset():
+    def tmlp_sunset():
         persistent.timeofday = "sunset"
         persistent.sprite_time = "sunset"
     
-    def timeloop_city_sunset():
+    def tmlp_city_sunset():
         persistent.timeofday = "city_sunset"
         persistent.sprite_time = "sunset"
 
-    def timeloop_blink(blink_pause):
+    def tmlp_blink(blink_pause):
         renpy.show("blink")
         renpy.pause(blink_pause, hard = True)
 
-    def timeloop_unblink(scene_name, unblink_pause):
+    def tmlp_unblink(scene_name, unblink_pause):
         renpy.hide("blink")
         renpy.scene()
         renpy.show(scene_name)
         renpy.show("unblink")
         renpy.pause(unblink_pause, hard = True)
 
-    def timeloop_frame_animation(image_name, frames_quantity, retention, loop, transition, start = 1, **properties):
+    def tmlp_frame_animation(image_name, frames_quantity, retention, loop, transition, start = 1, **properties):
         if image_name:
             anim_args = []
 
@@ -299,9 +308,9 @@
             return anim.TransitionAnimation(*anim_args, **properties)
         return None
 
-    class timeloop_particles(renpy.Displayable, Random, NoRollback):   
+    class tmlp_particles(renpy.Displayable, Random, NoRollback):   
         def __init__(self, particle):
-            super(timeloop_particles, self).__init__()
+            super(tmlp_particles, self).__init__()
             self.particle = renpy.displayable(particle)           
             self.parts_cache = []
 
@@ -311,10 +320,10 @@
             self.max_parts = 125
             self.oldst = None                    
             
-        def timeloop_particles_create_cache(self):     
-            self.parts_cache = [self.timeloop_particles_get_anim() for i in xrange(self.max_parts)]
+        def tmlp_particles_create_cache(self):     
+            self.parts_cache = [self.tmlp_particles_get_anim() for i in xrange(self.max_parts)]
             
-        def timeloop_particles_get_anim(self):
+        def tmlp_particles_get_anim(self):
             part = self.particle
             pos = [random.randint(0, config.screen_width), random.randint(0, config.screen_height)]
             pos2 = [random.randint(0, config.screen_width), random.randint(0, config.screen_height)]
@@ -330,10 +339,10 @@
             current_alpha = .0
             return [part, pos, pos2, dist, speed, alpha, zoom, time, elapsed_time, birth_time, death_time, current_zoom, current_alpha]      
         
-        def timeloop_particles_visit(self):
+        def tmlp_particles_visit(self):
             return [i[0] for i in self.parts_cache]
             
-        def timeloop_particles_update(self, st):            
+        def tmlp_particles_update(self, st):            
             if self.oldst == None:
                 self.oldst = st
             
@@ -349,7 +358,7 @@
                     self.tick = 0     
                     
                 if part[8] <= .0:
-                    upd_val = self.timeloop_particles_get_anim()
+                    upd_val = self.tmlp_particles_get_anim()
                     for i in xrange(1, 13):
                         part[i] = upd_val[i]
                 try:        
@@ -390,7 +399,7 @@
            
         def render(self, width, height, st, at):               
             if not self.parts_cache:
-                self.timeloop_particles_create_cache()
+                self.tmlp_particles_create_cache()
                            
             renderObj = renpy.Render(config.screen_width, config.screen_height)
 
@@ -401,46 +410,46 @@
                 cp_render = renpy.render(t, width, height, st, at)
                 renderObj.blit(cp_render, (xpos, ypos))
                         
-            self.timeloop_particles_update(st)              
+            self.tmlp_particles_update(st)              
             renpy.redraw(self, 0)
             return renderObj
 
-    # class timeloop_glitches(renpy.Displayable, Random, NoRollback):
+    # class tmlp_glitches(renpy.Displayable, Random, NoRollback):
     #     def __init__(self, image_name, speed_multipler = .5):
-    #         super(timeloop_glitches, self).__init__()
+    #         super(tmlp_glitches, self).__init__()
     #         self.image_name = renpy.easy.displayable(image_name)
     #         self.cached_images = []
     #         self.speed_multipler = float(speed_multipler)
 
-    #     def timeloop_glitches_visit(self):
+    #     def tmlp_glitches_visit(self):
     #         return [i[0] for i in self.cached_images] + [self.image_name]
 
-    #     def timeloop_glitches_create_cache(self):
-    #         self.cached_images = [self.timeloop_glitches_get_random_recolor() for i in xrange(500)]
+    #     def tmlp_glitches_create_cache(self):
+    #         self.cached_images = [self.tmlp_glitches_get_random_recolor() for i in xrange(500)]
 
-    #     def timeloop_glitches_get_random_crop(self):
-    #         width, height = fix_map(lambda x: self.timeloop_glitches_rndInt((self.random() * x * .1)), self.base_size)
+    #     def tmlp_glitches_get_random_crop(self):
+    #         width, height = fix_map(lambda x: self.tmlp_glitches_rndInt((self.random() * x * .1)), self.base_size)
 
     #         width *= 10
 
-    #         x, y = fix_map(lambda x: self.timeloop_glitches_rndInt(self.uniform(.0, (x[1] - x[0]))), zip((width, height), self.base_size))
+    #         x, y = fix_map(lambda x: self.tmlp_glitches_rndInt(self.uniform(.0, (x[1] - x[0]))), zip((width, height), self.base_size))
 
     #         return(LiveCrop((x, y, width, height), self.image_name), (x, y), (width, height))
 
-    #     def timeloop_glitches_get_random_recolor(self):
-    #         crop, pos, size = self.timeloop_glitches_get_random_crop()
+    #     def tmlp_glitches_get_random_recolor(self):
+    #         crop, pos, size = self.tmlp_glitches_get_random_crop()
     #         return(Transform(LiveComposite(size, (0, 0), crop, (0, 0), AlphaMask(Solid(tuple(self.randint(0, 200) for i in xrange(4))), crop)), xzoom = self.uniform(1., 1.5), yzoom = self.uniform(.5, 1.),), pos, size)
 
     #     @staticmethod
-    #     def timeloop_glitches_rndInt(val):
+    #     def tmlp_glitches_rndInt(val):
     #         return int(round(float(val)))
 
     #     def render(self, width, height, st, at):
     #         pic_rend = renpy.render(self.image_name, width, height, st, at)
-    #         w, h = self.base_size = fix_map(self.timeloop_glitches_rndInt, pic_rend.get_size())
+    #         w, h = self.base_size = fix_map(self.tmlp_glitches_rndInt, pic_rend.get_size())
 
     #         if not self.cached_images:
-    #             self.timeloop_glitches_create_cache()
+    #             self.tmlp_glitches_create_cache()
 
     #         renderObj = renpy.Render(w, h)
 
@@ -456,37 +465,37 @@
     #             x -= (float((sizeX - oldX)) / 2.)
     #             y -= (float((sizeY - oldY)) / 2.)
     #             x += (sizeX * self.uniform(-.2, .2))
-    #             renderObj.blit(renpy.render(image_name, width, height, st, at), tuple(fix_map(self.timeloop_glitches_rndInt, (x, y))))
+    #             renderObj.blit(renpy.render(image_name, width, height, st, at), tuple(fix_map(self.tmlp_glitches_rndInt, (x, y))))
 
     #         renpy.redraw(self, (self.random() * self.speed_multipler))
     #         return renderObj
 
 init:
-    image timeloop_part_one_main_menu = Movie(fps = 45, play = timeloop_gui_path + "main_menu_part_one/timeloop_part_one_main_menu.webm")
+    image tmlp_part_one_main_menu = Movie(fps = 45, play = tmlp_gui_path + "main_menu_part_one/tmlp_part_one_main_menu.webm")
 
-    image timeloop_part_one_main_menu_1of3 = timeloop_frame_animation(timeloop_gui_path + "main_menu_part_one/1of3_frame_animation/1of3", 20, 1, True, dissolve)
-    image tl_stars_anim = timeloop_frame_animation("timeloop/images/bg/anim_bg/tl_stars/stars", 2, 1.5, True, Dissolve(1.5))
-    image bg tl_int_catacombs_living_celling_blurred = im.Blur("timeloop/images/bg/part1/tl_int_catacombs_living_celling.png", 2)
+    image tmlp_part_one_main_menu_1of3 = tmlp_frame_animation(tmlp_gui_path + "main_menu_part_one/1of3_frame_animation/1of3", 20, 1, True, dissolve)
+    image tmlp_stars_anim = tmlp_frame_animation("tmlp/images/bg/anim_bg/tmlp_stars/stars", 2, 1.5, True, Dissolve(1.5))
+    image bg tmlp_int_catacombs_living_celling_blurred = im.Blur("tmlp/images/bg/part1/tmlp_int_catacombs_living_celling.png", 2)
 
-    # image timeloop_part_one_main_menu_1of3_glitch = timeloop_glitches(timeloop_gui_path + "main_menu/part1/1of3_static.png", 1)
-    # image timeloop_text = timeloop_glitches(timeloop_gui_path + "main_menu_part_one/timeloop_text.png")
+    # image tmlp_part_one_main_menu_1of3_glitch = tmlp_glitches(tmlp_gui_path + "main_menu/part1/1of3_static.png", 1)
+    # image tmlp_text = tmlp_glitches(tmlp_gui_path + "main_menu_part_one/tmlp_text.png")
 
-    $ tl_transition = ImageDissolve(timeloop_gui_path + "transitions/glitch.png", 2, 50, reverse = False)
-    $ tl_glitch_transition = MultipleTransition([True, Dissolve(0.5), "timeloop/images/gui/transitions/glitch/1.png", Pause(1.0), "timeloop/images/gui/transitions/glitch/2.png", dissolve, True])
+    $ tmlp_transition = ImageDissolve(tmlp_gui_path + "transitions/glitch.png", 2, 50, reverse = False)
+    $ tmlp_glitch_transition = MultipleTransition([True, Dissolve(0.5), "tmlp/images/gui/transitions/glitch/1.png", Pause(1.0), "tmlp/images/gui/transitions/glitch/2.png", dissolve, True])
 
-    if persistent.timeloop_firstrun == None:
-        $ persistent.timeloop_firstrun = False
+    if persistent.tmlp_firstrun == None:
+        $ persistent.tmlp_firstrun = False
 
-    if persistent.timeloop_part_one_completed == None:
-        $ persistent.timeloop_part_one_completed = False
+    if persistent.tmlp_part_one_completed == None:
+        $ persistent.tmlp_part_one_completed = False
 
-    if persistent.timeloop_part_two_completed == None:
-        $ persistent.timeloop_part_two_completed = False
+    if persistent.tmlp_part_two_completed == None:
+        $ persistent.tmlp_part_two_completed = False
 
-    $ timeloop_pyan_contempt = 0
-    $ timeloop_diary_active = False
+    $ tmlp_pyan_contempt = 0
+    $ tmlp_diary_active = False
 
-    transform tl_bus_moving():
+    transform tmlp_bus_moving():
         subpixel True
         truecenter
         zoom 1.03
