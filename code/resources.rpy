@@ -2,10 +2,6 @@
     from random import Random
     from os import path
 
-    tmlp_gui_path = "tmlp/images/gui/"
-
-    tmlp_thumb = tmlp_gui_path + "preferences/thumb.png"
-
     tmlp_mod_name = "tmlp"
     tmlp_prefix = tmlp_mod_name + "_"
 
@@ -134,7 +130,7 @@
     tmlp_names["tmlp_bush"] = "Голос"
     store.tmlp_names_list.append("tmlp_bush")
 
-    def tmlp_char_define(x, is_nvl = False):
+    def tmlp_char_define(x, is_nvl=False):
         global DynamicCharacter
         global nvl
         global tmlp_store
@@ -143,28 +139,28 @@
 
         if x == "tmlp_narrator":
             if is_nvl:
-                tmlp_gl["tmlp_narrator"] = Character(None, kind = nvl, what_style = "tmlp_text_style", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_narrator"] = Character(None, kind=nvl, what_style="tmlp_text_style", ctc="none", ctc_position="fixed")
 
             else:
-                tmlp_gl["tmlp_narrator"] = Character(None, what_style = "tmlp_text_style", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_narrator"] = Character(None, what_style="tmlp_text_style", ctc="none", ctc_position="fixed")
 
             return
 
         if x == "tmlp_th":
             if  is_nvl:
-                tmlp_gl["tmlp_th"] = Character(None, kind = nvl, what_style = "tmlp_text_style", what_prefix = "~ ", what_suffix = " ~", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_th"] = Character(None, kind=nvl, what_style="tmlp_text_style", what_prefix="~ ", what_suffix=" ~", ctc="none", ctc_position="fixed")
 
             else:
-                tmlp_gl["tmlp_th"] = Character(None, what_style = "tmlp_text_style", what_prefix = "~ ", what_suffix = " ~", ctc = "none", ctc_position = "fixed")
+                tmlp_gl["tmlp_th"] = Character(None, what_style="tmlp_text_style", what_prefix="~ ", what_suffix=" ~", ctc="none", ctc_position="fixed")
 
             return
 
         if is_nvl:
-            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color = store.tmlp_colors[x][tmlp_speaker_color], kind = nvl, what_style = "tmlp_text_style", who_suffix = ":", ctc = "none", ctc_position = "fixed")
+            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color=store.tmlp_colors[x][tmlp_speaker_color], kind=nvl, what_style="tmlp_text_style", who_suffix=":", ctc="none", ctc_position="fixed")
             tmlp_gl["%s_name" % x] = store.tmlp_names[x]
 
         else:
-            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color = store.tmlp_colors[x][tmlp_speaker_color], what_style = "tmlp_text_style", ctc = "none", ctc_position = "fixed")
+            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color=store.tmlp_colors[x][tmlp_speaker_color], what_style="tmlp_text_style", ctc="none", ctc_position="fixed")
             tmlp_gl["%s_name" % x] = store.tmlp_names[x]
 
     def tmlp_set_mode_adv():
@@ -285,16 +281,16 @@
 
     def tmlp_blink(blink_pause):
         renpy.show("blink")
-        renpy.pause(blink_pause, hard = True)
+        renpy.pause(blink_pause, hard=True)
 
     def tmlp_unblink(scene_name, unblink_pause):
         renpy.hide("blink")
         renpy.scene()
         renpy.show(scene_name)
         renpy.show("unblink")
-        renpy.pause(unblink_pause, hard = True)
+        renpy.pause(unblink_pause, hard=True)
 
-    def tmlp_frame_animation(image_name, frames_quantity, retention, loop, transition, start = 1, **properties):
+    def tmlp_frame_animation(image_name, frames_quantity, retention, loop, transition, start=1, **properties):
         if image_name:
             anim_args = []
 
