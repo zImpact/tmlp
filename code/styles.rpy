@@ -1,6 +1,8 @@
-init python:
-    intro_light = tmlp_gui_path + "fonts/intro_light.ttf"
-    gotham_pro_medium = tmlp_gui_path + "fonts/gotham_pro_medium.ttf"
+init -10 python:
+    tmlp_gui_path = "tmlp/images/gui/"
+
+    tmlp_intro_light = tmlp_gui_path + "fonts/intro_light.ttf"
+    tmlp_gotham_pro_medium = tmlp_gui_path + "fonts/gotham_pro_medium.ttf"
 
     style.tmlp_button_none = Style(style.button)
     style.tmlp_button_none.background = None
