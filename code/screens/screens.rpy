@@ -119,7 +119,7 @@ screen tmlp_main_menu():
         ypos 250
         action [
             Hide("tmlp_part_one_main_menu"),
-            Start("tmlp_part_one_prologue_day_one")
+            Start("tmlp_prologue")
         ]
             
     textbutton "Загрузить игру":
@@ -154,7 +154,7 @@ screen tmlp_main_menu():
         action [Hide("tmlp_part_one_main_menu"), ShowMenu("tmlp_part_one_quit_main_menu")]
 
     imagebutton:
-        auto tmlp_gui_path + "misc/tmlp_logowhite_%s.png"
+        auto tmlp_gui_path + "misc/logowhite_%s.png"
         xpos 1520
         ypos 800
         action OpenURL("https://vk.com/public176281709")
@@ -564,7 +564,7 @@ screen tmlp_text_history:
             for h in _history_list:
                 if h.who:
                     text h.who:
-                        font gotham_pro_medium
+                        font tmlp_gotham_pro_medium
                         ypos 0
                         xpos xposition
                         xalign 0.0
@@ -643,7 +643,7 @@ screen tmlp_choice:
                         xalign 0.5
                         action action
                         text caption:
-                            font gotham_pro_medium
+                            font tmlp_gotham_pro_medium
                             size 37
                             hover_size 37
                             color tmlp_choice_colors[persistent.timeofday]
@@ -656,7 +656,7 @@ screen tmlp_choice:
                         xalign 0.5
                         action action
                         text caption:
-                            font gotham_pro_medium
+                            font tmlp_gotham_pro_medium
                             size 37
                             hover_size 37
                             color tmlp_choice_colors[persistent.timeofday]
@@ -705,7 +705,7 @@ screen tmlp_say:
                 xpos 194
                 ypos 964
                 xmaximum 1541
-                font gotham_pro_medium
+                font tmlp_gotham_pro_medium
                 size 28
                 line_spacing 2
 
@@ -715,7 +715,7 @@ screen tmlp_say:
                     xalign 0.5
                     text_align 0.5
                     ypos 900
-                    font gotham_pro_medium
+                    font tmlp_gotham_pro_medium
                     size 28
                     line_spacing 2          
                 
@@ -753,7 +753,7 @@ screen tmlp_say:
                 xpos 194
                 ypos 915
                 xmaximum 1541
-                font gotham_pro_medium
+                font tmlp_gotham_pro_medium
                 size 35
                 line_spacing 1
                 
@@ -765,7 +765,7 @@ screen tmlp_say:
                     xalign 0.5
                     text_align 0.5
                     ypos 870
-                    font gotham_pro_medium
+                    font tmlp_gotham_pro_medium
                     size 35
                     line_spacing 1
 
@@ -802,7 +802,7 @@ screen tmlp_nvl:
                             if who is not None:
                                 text who:
                                     id who_id
-                                    font gotham_pro_medium
+                                    font tmlp_gotham_pro_medium
                                     size 35
                                     line_spacing 1
 
@@ -811,13 +811,13 @@ screen tmlp_nvl:
                                 color (255, 255, 255, 255) 
                                 size 35
                                 line_spacing 1
-                                font gotham_pro_medium
+                                font tmlp_gotham_pro_medium
                                 
                         elif persistent.font_size == "small":
                             if who is not None:
                                 text who:
                                     id who_id
-                                    font gotham_pro_medium
+                                    font tmlp_gotham_pro_medium
                                     size 28
                                     line_spacing 1
 
@@ -826,7 +826,7 @@ screen tmlp_nvl:
                                 color (255, 255, 255, 255)   
                                 size 28
                                 line_spacing 1
-                                font gotham_pro_medium
+                                font tmlp_gotham_pro_medium
             if items:
                 vbox:
                     id "menu"

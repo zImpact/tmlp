@@ -2,8 +2,9 @@ label tmlp_prologue:
     stop music fadeout 3
     $ persistent.tmlp_firstrun = True
     $ tmlp_diary_active = False
-    $ tmlp_prologue()
+    # $ tmlp_prologue()
     $ persistent.sprite_time = "night"
+    $ persistent.timeofday = "prologue"
     $ save_name = ("Пролог и начало конца.")
     $ renpy.pause(2, hard = True)
     scene bg tmlp_int_catacombs_living_celling with Dissolve(3)
