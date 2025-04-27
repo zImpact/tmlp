@@ -42,93 +42,33 @@
 
     store.tmlp_names_list.append("tmlp_th")
 
-    tmlp_colors["tmlp_din"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_colors["tmlp_din"] = {"speaker_color": "#551313"}
     tmlp_names["tmlp_din"] = "Дин"
     store.tmlp_names_list.append("tmlp_din")
 
-    tmlp_colors["tmlp_dinp"] = {"speaker_color": (85, 19, 19, 255)}
-    tmlp_names["tmlp_dinp"] = "Пионер"
-    store.tmlp_names_list.append("tmlp_dinp")
+    tmlp_colors["tmlp_pi_pyan"] = {"speaker_color": "#551313"} # TODO: цвет поменять
+    tmlp_names["tmlp_pi_pyan"] = "Пионер"
+    store.tmlp_names_list.append("tmlp_pi_pyan")
 
-    tmlp_colors["tmlp_pyan"] = {"speaker_color": (85, 19, 19, 255)}
+    tmlp_colors["tmlp_pyan"] = {"speaker_color": "#551313"} # TODO: цвет поменять
     tmlp_names["tmlp_pyan"] = "Пьяница"
     store.tmlp_names_list.append("tmlp_pyan")
 
-    tmlp_colors["tmlp_pyap"] = {"speaker_color": (85, 19, 19, 255)}
-    tmlp_names["tmlp_pyap"] = "Пионер"
-    store.tmlp_names_list.append("tmlp_pyap")
+    tmlp_colors["tmlp_pacifist"] = {"speaker_color": "#088010"}
+    tmlp_names["tmlp_pacifist"] = "Пацифист"
+    store.tmlp_names_list.append("tmlp_pacifist")
 
-    tmlp_colors["tmlp_plyaj"] = {"speaker_color": (85, 19, 19, 255)}
-    tmlp_names["tmlp_plyaj"] = "Пляжник"
-    store.tmlp_names_list.append("tmlp_plyaj")
-
-    tmlp_colors["tmlp_plyajp"] = {"speaker_color": (85, 19, 19, 255)}
-    tmlp_names["tmlp_plyajp"] = "Пионер"
-    store.tmlp_names_list.append("tmlp_plyajp")
-
-    tmlp_colors["tmlp_voice"] = {"speaker_color": (225, 221, 125, 255)}
-    tmlp_names["tmlp_voice"] = "Голос"
-    store.tmlp_names_list.append("tmlp_voice")
-
-    tmlp_colors["tmlp_sam"] = {"speaker_color": (225, 221, 125, 255)}
-    tmlp_names["tmlp_sam"] = "Семён"
-    store.tmlp_names_list.append("tmlp_sam")
-
-    tmlp_colors["tmlp_myself"] = {"speaker_color": (6, 91, 13, 255)}
-    tmlp_names["tmlp_myself"] = "Я"
-    store.tmlp_names_list.append("tmlp_myself")
-
-    tmlp_colors["tmlp_el"] = {"speaker_color": (205, 205, 0, 255)}
-    tmlp_names["tmlp_el"] = "Электроник"
-    store.tmlp_names_list.append("tmlp_el")
-
-    tmlp_colors["tmlp_un"] = {"speaker_color": (170, 100, 217, 255)}
-    tmlp_names["tmlp_un"] = "Леночка"
+    tmlp_colors["tmlp_un"] = {"speaker_color": "#aa64d9"}
+    tmlp_names["tmlp_un"] = "Лена"
     store.tmlp_names_list.append("tmlp_un")
 
-    tmlp_colors["tmlp_dv"] = {"speaker_color": (210, 139, 16, 255)}
+    tmlp_colors["tmlp_dv"] = {"speaker_color": "#ffaa00"}
     tmlp_names["tmlp_dv"] = "Двачевская"
     store.tmlp_names_list.append("tmlp_dv")
 
-    tmlp_colors["tmlp_sl"] = {"speaker_color": (214, 176, 0, 255)}
+    tmlp_colors["tmlp_sl"] = {"speaker_color": "#ffd200"}
     tmlp_names["tmlp_sl"] = "Славяна"
     store.tmlp_names_list.append("tmlp_sl")
-
-    tmlp_colors["tmlp_us"] = {"speaker_color": (234, 55, 0, 255)}
-    tmlp_names["tmlp_us"] = "Мелкая"
-    store.tmlp_names_list.append("tmlp_us")
-
-    tmlp_colors["tmlp_mt"] = {"speaker_color": (0, 182, 39, 255)}
-    tmlp_names["tmlp_mt"] = "Вожатая"
-    store.tmlp_names_list.append("tmlp_mt")
-
-    tmlp_colors["tmlp_cs"] = {"speaker_color": (134, 134, 230, 255)}
-    tmlp_names["tmlp_cs"] = "Медсестра"
-    store.tmlp_names_list.append("tmlp_cs")
-
-    tmlp_colors["tmlp_mz"] = {"speaker_color": (84, 129, 219, 255)}
-    tmlp_names["tmlp_mz"] = "Библиотекарша"
-    store.tmlp_names_list.append("tmlp_mz")
-
-    tmlp_colors["tmlp_mi"] = {"speaker_color": (0, 180, 207, 255)}
-    tmlp_names["tmlp_mi"] = "Мику"
-    store.tmlp_names_list.append("tmlp_mi")
-
-    tmlp_colors["tmlp_uv"] = {"speaker_color": (64, 208, 0, 255)}
-    tmlp_names["tmlp_uv"] = "Юля"
-    store.tmlp_names_list.append("tmlp_uv")
-
-    tmlp_colors["tmlp_sh"] = {"speaker_color": (205, 194, 18, 255)}
-    tmlp_names["tmlp_sh"] = "Шурик"
-    store.tmlp_names_list.append("tmlp_sh")
-
-    tmlp_colors["tmlp_pi"] = {"speaker_color": (230, 0, 0, 255)}
-    tmlp_names["tmlp_pi"] = "Пионер"
-    store.tmlp_names_list.append("tmlp_pi")
-
-    tmlp_colors["tmlp_bush"] = {"speaker_color": (192, 192, 192, 255)}
-    tmlp_names["tmlp_bush"] = "Голос"
-    store.tmlp_names_list.append("tmlp_bush")
 
     def tmlp_char_define(x, is_nvl=False):
         global DynamicCharacter
