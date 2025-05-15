@@ -191,6 +191,14 @@
             return anim.TransitionAnimation(*anim_args, **properties)
         return None
 
+    def tmlp_set_time(timeofday, sprite_time=None):
+        if sprite_time is None:
+            sprite_time = timeofday
+        
+        renpy.block_rollback()
+        persistent.timeofday = timeofday
+        persistent.sprite_time = sprite_time
+
 init:
     image tmlp_part_one_main_menu = Movie(fps = 45, play = tmlp_gui_path + "main_menu_part_one/tmlp_part_one_main_menu.webm")
 
