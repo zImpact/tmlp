@@ -1,6 +1,6 @@
 label tmpl_act1_day1:
     hide blink
-    $ tmlp_day()
+    $ tmlp_set_time("day")
     $ tmlp_day_intro("one", "День первый.")
     $ renpy.pause(2, hard = True)
     $ tmlp_unblink("bg int_bus", 2)
