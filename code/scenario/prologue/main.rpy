@@ -2,9 +2,7 @@ label tmlp_prologue:
     stop music fadeout 3
     $ persistent.tmlp_firstrun = True
     $ tmlp_diary_active = False
-    # $ tmlp_prologue()
-    $ persistent.sprite_time = "night"
-    $ persistent.timeofday = "prologue"
+    $ tmlp_set_time("prologue", "night")
     $ save_name = ("Пролог и начало конца.")
     $ renpy.pause(2, hard = True)
     scene bg tmlp_int_catacombs_living_celling with Dissolve(3)
@@ -172,7 +170,7 @@ label tmlp_prologue:
     stop music fadeout 2
     stop ambience fadeout 2
     $ renpy.pause(2, hard = True)
-    $ persistent.timeofday = "night"
+    $ tmlp_set_time("night")
     scene bg int_library_night2 with dissolve
     ## TODO: Второй день пролога. Здесь будет описание работы дневника.
     tmlp_narrator "Когда проходили мои первые циклы, я просыпался в автобусе со своим мобильным и зимней одеждой, как и все. {w}Но спустя несколько лет(сотен лет?) пользоваться телефоном я полностью перестал."
@@ -194,8 +192,7 @@ label tmlp_prologue:
     tmlp_narrator "Но если не восстановится, то получится немного глупо. {w}Кроме этого при таких мыслях меня охватывала некая паранойя."
     tmlp_narrator "Конечно, в первую очередь я использую его для записей. Но возможны и другие применения."   
     scene bg black with Dissolve(1)
-    $ persistent.timeofday = "prologue"
-    $ persistent.sprite_time = "night"
+    $ tmlp_set_time("prologue", "night")
     scene bg tmlp_int_catacombs_living with Dissolve(2)
     play ambience ambience_catacombs fadein 3
     play sound_loop tmlp_rain2 fadein 3
@@ -220,7 +217,7 @@ label tmlp_prologue:
     tmlp_narrator "По мере приближения к поверхности стук нарастал."
     scene bg tmlp_int_old_building_night_edited with dissolve
     tmlp_narrator "На лестницу я практически взлетел от любопытства."
-    $ persistent.timeofday = "night"
+    $ tmlp_set_time("night")
     stop ambience fadeout 2
     stop sound_loop fadeout 2
     scene bg tmlp_ext_old_building_night_rain_video with dissolve
