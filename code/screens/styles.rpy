@@ -1,4 +1,4 @@
-init -10 python:
+init python:
     tmlp_gui_path = "tmlp/images/gui/"
 
     tmlp_intro_light = tmlp_gui_path + "fonts/intro_light.ttf"

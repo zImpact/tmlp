@@ -2,15 +2,12 @@
     from random import Random
     from os import path
 
-    tmlp_mod_name = "tmlp"
-    tmlp_prefix = tmlp_mod_name + "_"
-
     for file_name in renpy.list_files():
-        if tmlp_mod_name in file_name:
+        if TMLP_MOD_NAME in file_name:
             file_path = path.splitext(path.basename(file_name))[0]
 
-            if file_name.startswith(tmlp_mod_name + "/images/bg/"):
-                bg_name = "bg " + tmlp_prefix + file_path
+            if file_name.startswith(TMLP_MOD_NAME + "/images/bg/"):
+                bg_name = "bg " + TMLP_PREFIX + file_path
 
                 if file_name.endswith(".ogv"):
                     renpy.image(bg_name, Movie(fps=45, play=file_name))
@@ -18,9 +15,9 @@
                 else:
                     renpy.image(bg_name, file_name)
 
-            elif file_name.startswith(tmlp_mod_name + "/images/sprites/"):
+            elif file_name.startswith(TMLP_MOD_NAME + "/images/sprites/"):
                 renpy.image(
-                    tmlp_prefix + file_path,
+                    TMLP_PREFIX + file_path,
                     ConditionSwitch(
                         "persistent.sprite_time == 'sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
                         "persistent.sprite_time == 'night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
@@ -28,11 +25,9 @@
                     )
                 )
 
-            elif file_name.startswith(tmlp_mod_name + "/sounds/"):
-                globals()[tmlp_prefix + file_path] = file_name
+            elif file_name.startswith(TMLP_MOD_NAME + "/sounds/"):
+                globals()[TMLP_PREFIX + file_path] = file_name
 
-    tmlp_std_set_for_preview = {}
-    tmlp_std_set = {}
     store.tmlp_colors = {}
     store.tmlp_names = {}
     store.tmlp_names_list = []
@@ -70,38 +65,66 @@
     tmlp_names["tmlp_sl"] = "Славяна"
     store.tmlp_names_list.append("tmlp_sl")
 
-    def tmlp_char_define(x, is_nvl=False):
+    def tmlp_char_define(character_name, is_nvl=False):
         global DynamicCharacter
         global nvl
         global tmlp_store
         global tmlp_speaker_color
         tmlp_gl = globals()
 
-        if x == "tmlp_narrator":
+        if character_name == "tmlp_narrator":
             if is_nvl:
-                tmlp_gl["tmlp_narrator"] = Character(None, kind=nvl, what_style="tmlp_text_style", ctc="none", ctc_position="fixed")
+                tmlp_gl["tmlp_narrator"] = Character(
+                    None,
+                    kind=nvl,
+                    what_style="tmlp_text_style"
+                )
 
             else:
-                tmlp_gl["tmlp_narrator"] = Character(None, what_style="tmlp_text_style", ctc="none", ctc_position="fixed")
+                tmlp_gl["tmlp_narrator"] = Character(
+                    None,
+                    what_style="tmlp_text_style"
+                )
 
             return
 
-        if x == "tmlp_th":
+        if character_name == "tmlp_th":
             if  is_nvl:
-                tmlp_gl["tmlp_th"] = Character(None, kind=nvl, what_style="tmlp_text_style", what_prefix="~ ", what_suffix=" ~", ctc="none", ctc_position="fixed")
+                tmlp_gl["tmlp_th"] = Character(
+                    None,
+                    kind=nvl,
+                    what_style="tmlp_text_style",
+                    what_prefix="~ ",
+                    what_suffix=" ~"
+                )
 
             else:
-                tmlp_gl["tmlp_th"] = Character(None, what_style="tmlp_text_style", what_prefix="~ ", what_suffix=" ~", ctc="none", ctc_position="fixed")
+                tmlp_gl["tmlp_th"] = Character(
+                    None,
+                    what_style="tmlp_text_style",
+                    what_prefix="~ ",
+                    what_suffix=" ~"
+                )
 
             return
 
         if is_nvl:
-            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color=store.tmlp_colors[x][tmlp_speaker_color], kind=nvl, what_style="tmlp_text_style", who_suffix=":", ctc="none", ctc_position="fixed")
-            tmlp_gl["%s_name" % x] = store.tmlp_names[x]
+            tmlp_gl[character_name] = DynamicCharacter(
+                "%s_name" % character_name,
+                color=store.tmlp_colors[character_name][tmlp_speaker_color],
+                kind=nvl,
+                what_style="tmlp_text_style",
+                who_suffix=":"
+            )
+            tmlp_gl["%s_name" % character_name] = store.tmlp_names[character_name]
 
         else:
-            tmlp_gl[x] = DynamicCharacter("%s_name" % x, color=store.tmlp_colors[x][tmlp_speaker_color], what_style="tmlp_text_style", ctc="none", ctc_position="fixed")
-            tmlp_gl["%s_name" % x] = store.tmlp_names[x]
+            tmlp_gl[character_name] = DynamicCharacter(
+                "%s_name" % character_name,
+                color=store.tmlp_colors[character_name][tmlp_speaker_color],
+                what_style="tmlp_text_style"
+            )
+            tmlp_gl["%s_name" % character_name] = store.tmlp_names[character_name]
 
     def tmlp_set_mode_adv():
         nvl_clear()
@@ -111,8 +134,8 @@
         
         global tmlp_store
 
-        for x in store.tmlp_names_list:
-            tmlp_char_define(x)
+        for character_name in store.tmlp_names_list:
+            tmlp_char_define(character_name)
 
     def tmlp_set_mode_nvl():
         nvl_clear()
@@ -127,44 +150,42 @@
         
         global tmlp_store
         
-        for x in store.tmlp_names_list:
-            tmlp_char_define(x, True)
+        for character_name in store.tmlp_names_list:
+            tmlp_char_define(character_name, True)
 
     def tmlp_reload_names():
         global tmlp_store
 
-        for x in store.tmlp_names_list:
-            tmlp_char_define(x)
+        for character_name in store.tmlp_names_list:
+            tmlp_char_define(character_name)
 
-    tmlp_reload_names()
-
-    def tmlp_day_intro(day_numeral, tmlp_save_name, text_output = "adv", tmlp_part = "one"):
-        global save_name
+    # def tmlp_day_intro(day_numeral, tmlp_save_name, text_output = "adv", tmlp_part = "one"):
+    #     global save_name
         
-        tmlp_part_one_introes_path = tmlp_gui_path + "part_one_introes/part_one_day_"
-        tmlp_part_two_intro_path = tmlp_gui_path + "part_two_intro/part_two.webm"
-        tmlp_part_three_intro_path = tmlp_gui_path + "part_three_intro/part_three.webm"
+    #     tmlp_part_one_introes_path = TMLP_GUI_PATH + "part_one_introes/part_one_day_"
+    #     tmlp_part_two_intro_path = TMLP_GUI_PATH + "part_two_intro/part_two.webm"
+    #     tmlp_part_three_intro_path = TMLP_GUI_PATH + "part_three_intro/part_three.webm"
         
-        save_name = tmlp_save_name
+    #     save_name = tmlp_save_name
 
-        renpy.pause(1, hard = True)
+    #     renpy.pause(1, hard = True)
 
-        if tmlp_part == "one":
-            renpy.movie_cutscene(tmlp_part_one_introes_path + str(day_numeral) + ".webm")
+    #     if tmlp_part == "one":
+    #         renpy.movie_cutscene(tmlp_part_one_introes_path + str(day_numeral) + ".webm")
 
-        elif tmlp_part == "two":
-            renpy.movie_cutscene(tmlp_part_two_intro_path)
+    #     elif tmlp_part == "two":
+    #         renpy.movie_cutscene(tmlp_part_two_intro_path)
 
-        elif tmlp_part == "three":
-            renpy.movie_cutscene(tmlp_part_three_intro_path)
+    #     elif tmlp_part == "three":
+    #         renpy.movie_cutscene(tmlp_part_three_intro_path)
         
-        renpy.pause(1, hard = True)
+    #     renpy.pause(1, hard = True)
         
-        if text_output == "adv":
-            tmlp_set_mode_adv()
+    #     if text_output == "adv":
+    #         tmlp_set_mode_adv()
 
-        else:
-            tmlp_set_mode_nvl()
+    #     else:
+    #         tmlp_set_mode_nvl()
 
     def tmlp_blink(blink_pause):
         renpy.show("blink")
@@ -200,16 +221,16 @@
         persistent.sprite_time = sprite_time
 
 init:
-    image tmlp_part_one_main_menu = Movie(fps = 45, play = tmlp_gui_path + "main_menu_part_one/tmlp_part_one_main_menu.webm")
+    image tmlp_part_one_main_menu = Movie(fps = 45, play = TMLP_GUI_PATH + "main_menu_part_one/tmlp_part_one_main_menu.webm")
 
-    image tmlp_part_one_main_menu_1of3 = tmlp_frame_animation(tmlp_gui_path + "main_menu_part_one/1of3_frame_animation/1of3", 20, 1, True, dissolve)
+    image tmlp_part_one_main_menu_1of3 = tmlp_frame_animation(TMLP_GUI_PATH + "main_menu_part_one/1of3_frame_animation/1of3", 20, 1, True, dissolve)
     image tmlp_stars_anim = tmlp_frame_animation("tmlp/images/bg/anim_bg/tmlp_stars/stars", 2, 1.5, True, Dissolve(1.5))
     image bg tmlp_int_catacombs_living_celling_blurred = im.Blur("tmlp/images/bg/part1/tmlp_int_catacombs_living_celling.png", 2)
 
-    # image tmlp_part_one_main_menu_1of3_glitch = tmlp_glitches(tmlp_gui_path + "main_menu/part1/1of3_static.png", 1)
-    # image tmlp_text = tmlp_glitches(tmlp_gui_path + "main_menu_part_one/tmlp_text.png")
+    # image tmlp_part_one_main_menu_1of3_glitch = tmlp_glitches(TMLP_GUI_PATH + "main_menu/part1/1of3_static.png", 1)
+    # image tmlp_text = tmlp_glitches(TMLP_GUI_PATH + "main_menu_part_one/tmlp_text.png")
 
-    $ tmlp_transition = ImageDissolve(tmlp_gui_path + "transitions/glitch.png", 2, 50, reverse = False)
+    $ tmlp_transition = ImageDissolve(TMLP_GUI_PATH + "transitions/glitch.png", 2, 50, reverse = False)
     $ tmlp_glitch_transition = MultipleTransition([True, Dissolve(0.5), "tmlp/images/gui/transitions/glitch/1.png", Pause(1.0), "tmlp/images/gui/transitions/glitch/2.png", dissolve, True])
 
     if persistent.tmlp_firstrun == None:
