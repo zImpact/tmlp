@@ -8,7 +8,7 @@ screen tmlp_main_menu():
     key "K_F1":
         action NullAction()
 
-    add tmlp_menu_backgrounds[store.tmlp_menu_choice] at tmlp_bus_moving()
+    add persistent.tmlp_main_menu_background at tmlp_bus_moving()
 
     text "Петля времени":
         font tmlp_gotham_pro_medium
@@ -18,8 +18,8 @@ screen tmlp_main_menu():
         ypos 25
 
     textbutton "Начать игру":
-        style "tmlp_button_none"
-        text_style "tmlp_text_main_menu_part_one"
+        style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
+        text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
         text_align 0.5
         ypos 250
@@ -29,8 +29,8 @@ screen tmlp_main_menu():
         ]
             
     textbutton "Загрузить игру":
-        style "tmlp_button_none"
-        text_style "tmlp_text_main_menu_part_one"
+        style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
+        text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
         text_align 0.5
         ypos 395
@@ -40,8 +40,8 @@ screen tmlp_main_menu():
         ]
            
     textbutton "Дополнительно":
-        style "tmlp_button_none"
-        text_style "tmlp_text_main_menu_part_one"
+        style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
+        text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
         text_align 0.5
         ypos 540
@@ -51,8 +51,8 @@ screen tmlp_main_menu():
         ]
 
     textbutton "Настройки":
-        style "tmlp_button_none"
-        text_style "tmlp_text_main_menu_part_one"
+        style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
+        text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
         ypos 685
         action [
@@ -61,8 +61,8 @@ screen tmlp_main_menu():
         ]
             
     textbutton "Выход":
-        style "tmlp_button_none"
-        text_style "tmlp_text_main_menu_part_one"
+        style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
+        text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
         text_align 0.5
         ypos 830
@@ -72,7 +72,7 @@ screen tmlp_main_menu():
         ]
 
     imagebutton:
-        auto tmlp_gui_path + "misc/logowhite_%s.png"
+        auto TMLP_GUI_PATH + "misc/logowhite_%s.png"
         xpos 1520
         ypos 800
         action OpenURL("https://vk.com/public176281709")
