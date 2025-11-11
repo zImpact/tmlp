@@ -1,4 +1,7 @@
 init python:
+    # Объявляем глобальные переменные для рандомизации меню
+    global tmlp_menu_backgrounds, tmlp_menu_music, tmlp_menu_choice, tmlp_music_choice
+
     class tmlp_FunctionCallback(Action):
         def __init__(self, function, *arguments):
             self.function = function
@@ -43,14 +46,8 @@ init python:
             
         config.mouse = {"default": [(tmlp_gui_path + "misc/tmlp_cursor.png", 0, 0)]}
 
-        if persistent.tmlp_part_one_completed == False:
-            config.main_menu_music = tmlp_mega_drive_narc
-
-        if persistent.tmlp_part_one_completed == True:
-            config.main_menu_music = tmlp_stigmata_tanwui
-
-        if persistent.tmlp_part_two_completed == True:
-            config.main_menu_music = tmlp_yoko_kanno_total_eclipse
+        # Используем рандомную музыку для главного меню
+        config.main_menu_music = tmlp_menu_music[store.tmlp_music_choice]
 
         config.linear_saves_page_size = None
         persistent._file_page = "tmlp_FilePage_1"  

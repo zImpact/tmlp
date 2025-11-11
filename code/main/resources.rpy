@@ -159,33 +159,6 @@
         for character_name in store.tmlp_names_list:
             tmlp_char_define(character_name)
 
-    # def tmlp_day_intro(day_numeral, tmlp_save_name, text_output = "adv", tmlp_part = "one"):
-    #     global save_name
-        
-    #     tmlp_part_one_introes_path = TMLP_GUI_PATH + "part_one_introes/part_one_day_"
-    #     tmlp_part_two_intro_path = TMLP_GUI_PATH + "part_two_intro/part_two.webm"
-    #     tmlp_part_three_intro_path = TMLP_GUI_PATH + "part_three_intro/part_three.webm"
-        
-    #     save_name = tmlp_save_name
-
-    #     renpy.pause(1, hard = True)
-
-    #     if tmlp_part == "one":
-    #         renpy.movie_cutscene(tmlp_part_one_introes_path + str(day_numeral) + ".webm")
-
-    #     elif tmlp_part == "two":
-    #         renpy.movie_cutscene(tmlp_part_two_intro_path)
-
-    #     elif tmlp_part == "three":
-    #         renpy.movie_cutscene(tmlp_part_three_intro_path)
-        
-    #     renpy.pause(1, hard = True)
-        
-    #     if text_output == "adv":
-    #         tmlp_set_mode_adv()
-
-    #     else:
-    #         tmlp_set_mode_nvl()
 
     def tmlp_blink(blink_pause):
         renpy.show("blink")
@@ -227,8 +200,6 @@ init:
     image tmlp_stars_anim = tmlp_frame_animation("tmlp/images/bg/anim_bg/tmlp_stars/stars", 2, 1.5, True, Dissolve(1.5))
     image bg tmlp_int_catacombs_living_celling_blurred = im.Blur("tmlp/images/bg/part1/tmlp_int_catacombs_living_celling.png", 2)
 
-    # image tmlp_part_one_main_menu_1of3_glitch = tmlp_glitches(TMLP_GUI_PATH + "main_menu/part1/1of3_static.png", 1)
-    # image tmlp_text = tmlp_glitches(TMLP_GUI_PATH + "main_menu_part_one/tmlp_text.png")
 
     $ tmlp_transition = ImageDissolve(TMLP_GUI_PATH + "transitions/glitch.png", 2, 50, reverse = False)
     $ tmlp_glitch_transition = MultipleTransition([True, Dissolve(0.5), "tmlp/images/gui/transitions/glitch/1.png", Pause(1.0), "tmlp/images/gui/transitions/glitch/2.png", dissolve, True])
@@ -241,6 +212,29 @@ init:
 
     if persistent.tmlp_part_two_completed == None:
         $ persistent.tmlp_part_two_completed = False
+
+    # Списки для рандомизации главного меню
+    $ tmlp_menu_backgrounds = [
+        "tmlp_part_one_main_menu",
+        "tmlp_part_one_main_menu_1of3",
+        "tmlp_part2_main_menu_bg"
+    ]
+
+    $ tmlp_menu_music = [
+        tmlp_mega_drive_narc,
+        tmlp_stigmata_tanwui,
+        tmlp_yoko_kanno_total_eclipse
+    ]
+
+    # Инициализируем глобальные переменные для рандомизации
+    if not hasattr(store, 'tmlp_menu_choice'):
+        $ store.tmlp_menu_choice = 0
+    if not hasattr(store, 'tmlp_music_choice'):
+        $ store.tmlp_music_choice = 0
+
+    # Рандомизация выбора меню и музыки при каждом запуске
+    $ store.tmlp_menu_choice = renpy.random.choice(range(len(tmlp_menu_backgrounds)))
+    $ store.tmlp_music_choice = renpy.random.choice(range(len(tmlp_menu_music)))
 
     $ tmlp_pyan_contempt = 0
     $ tmlp_diary_active = False

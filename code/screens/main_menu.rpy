@@ -8,7 +8,7 @@ screen tmlp_main_menu():
     key "K_F1":
         action NullAction()
 
-    add "tmlp_part2_main_menu_bg" at tmlp_bus_moving()
+    add tmlp_menu_backgrounds[store.tmlp_menu_choice] at tmlp_bus_moving()
 
     text "Петля времени":
         font tmlp_gotham_pro_medium
@@ -24,7 +24,7 @@ screen tmlp_main_menu():
         text_align 0.5
         ypos 250
         action [
-            Hide("tmlp_part_one_main_menu"),
+            Hide("tmlp_main_menu"),
             Start("tmlp_prologue")
         ]
             
@@ -35,8 +35,8 @@ screen tmlp_main_menu():
         text_align 0.5
         ypos 395
         action [
-            Hide("tmlp_part_one_main_menu"),
-            ShowMenu("tmlp_part_one_load_main_menu")
+            Hide("tmlp_main_menu"),
+            ShowMenu("tmlp_load")
         ]
            
     textbutton "Дополнительно":
@@ -46,8 +46,8 @@ screen tmlp_main_menu():
         text_align 0.5
         ypos 540
         action [
-            Hide("tmlp_part_one_main_menu"),
-            ShowMenu("tmlp_part_one_extra_main_menu")
+            Hide("tmlp_main_menu"),
+            ShowMenu("tmlp_part_one_gallery")
         ]
 
     textbutton "Настройки":
@@ -56,8 +56,8 @@ screen tmlp_main_menu():
         xalign 0.5
         ypos 685
         action [
-            Hide("tmlp_part_one_main_menu"),
-            ShowMenu("tmlp_part_one_preferences_main_menu")
+            Hide("tmlp_main_menu"),
+            ShowMenu("tmlp_preferences")
         ]
             
     textbutton "Выход":
@@ -67,8 +67,8 @@ screen tmlp_main_menu():
         text_align 0.5
         ypos 830
         action [
-            Hide("tmlp_part_one_main_menu"),
-            ShowMenu("tmlp_part_one_quit_main_menu")
+            Hide("tmlp_main_menu"),
+            ShowMenu("tmlp_quit")
         ]
 
     imagebutton:
