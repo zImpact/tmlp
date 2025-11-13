@@ -8,7 +8,7 @@ screen tmlp_main_menu():
     key "K_F1":
         action NullAction()
 
-    add persistent.tmlp_main_menu_background at tmlp_bus_moving()
+    add persistent.tmlp_main_menu_background
 
     text "Петля времени":
         font tmlp_gotham_pro_medium
