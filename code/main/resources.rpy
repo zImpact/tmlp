@@ -225,12 +225,13 @@
         persistent.tmlp_main_menu_music = current_theme["main_menu_music"]
 
 init:
+    $ tmlp_reload_names()
+
     image tmlp_main_menu_bg_theme_1 = TMLP_GUI_PATH + "main_menu/theme_1.png"
     image tmlp_main_menu_bg_theme_2 = TMLP_GUI_PATH + "main_menu/theme_2.png"
-    image tmlp_main_menu_bg_theme_3 = Movie(fps=45, play=TMLP_GUI_PATH + "main_menu/theme3.webm")
+    image tmlp_main_menu_bg_theme_3 = Movie(fps=45, play=TMLP_GUI_PATH + "main_menu/theme_3.webm")
 
     image tmlp_stars_anim = tmlp_frame_animation("tmlp/images/bg/anim_bg/tmlp_stars/stars", 2, 1.5, True, Dissolve(1.5))
-    image bg tmlp_int_catacombs_living_celling_blurred = im.Blur("tmlp/images/bg/part1/tmlp_int_catacombs_living_celling.png", 2)
 
     $ tmlp_menu_themes = [
         {

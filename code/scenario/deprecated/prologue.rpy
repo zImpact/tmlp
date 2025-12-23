@@ -1,7 +1,6 @@
 label tmlp_prologue:
     stop music fadeout 3
     $ persistent.tmlp_firstrun = True
-    $ tmlp_diary_active = False
     $ tmlp_set_time("prologue", "night")
     $ save_name = ("Пролог и начало конца.")
     $ renpy.pause(2, hard = True)

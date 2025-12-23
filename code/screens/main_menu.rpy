@@ -36,7 +36,7 @@ screen tmlp_main_menu():
         ypos 395
         action [
             Hide("tmlp_main_menu"),
-            ShowMenu("tmlp_load")
+            ShowMenu("tmlp_load_main_menu")
         ]
            
     textbutton "Дополнительно":
@@ -47,7 +47,7 @@ screen tmlp_main_menu():
         ypos 540
         action [
             Hide("tmlp_main_menu"),
-            ShowMenu("tmlp_part_one_gallery")
+            ShowMenu("tmlp_extra_main_menu")
         ]
 
     textbutton "Настройки":
@@ -57,7 +57,7 @@ screen tmlp_main_menu():
         ypos 685
         action [
             Hide("tmlp_main_menu"),
-            ShowMenu("tmlp_preferences")
+            ShowMenu("tmlp_preferences_main_menu")
         ]
             
     textbutton "Выход":
@@ -68,7 +68,7 @@ screen tmlp_main_menu():
         ypos 830
         action [
             Hide("tmlp_main_menu"),
-            ShowMenu("tmlp_quit")
+            ShowMenu("tmlp_quit_main_menu")
         ]
 
     imagebutton:
