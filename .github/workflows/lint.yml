@@ -11,7 +11,7 @@ on:
 
 jobs:
   lint:
-    uses: zImpact/es_mod_workflow/.github/workflows/lint_es_mod.yml@v3.0.2
+    uses: zImpact/es_mod_workflow/.github/workflows/lint_es_mod.yml@d69a5b9fdac2177c06c3f8785a54fb55ee57a67f
     with:
       project_name: "tmlp"
       sdk_version: "8.1.3"
