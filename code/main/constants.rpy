@@ -14,7 +14,7 @@ define TMLP_SCREENS = [
     "say",
     "nvl",
     "game_menu_selector",
-    "yesno_prompt", 
+    "yesno_prompt",
     "choice",
     "help",
 ]
@@ -22,6 +22,6 @@ define TMLP_SCREENS = [
 define TMLP_SOUND_CHANNELS = [
     "ambience",
     "music",
-    "sound", 
+    "sound",
     "sound_loop",
 ]

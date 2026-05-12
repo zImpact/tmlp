@@ -1,5 +1,5 @@
-init python: 
-    tmlp_gallery = Gallery() 
+init python:
+    tmlp_gallery = Gallery()
     tmlp_gallery_page = 0
     tmlp_gallery.transition = fade
     tmlp_gallery.locked_button = TMLP_GUI_PATH + "save_load/main_menu_part_one/save_load_button_idle.png"
@@ -12,7 +12,7 @@ init python:
     tmlp_gallery_bg_list = [
 
     ]
-    
+
     for bg in tmlp_gallery_bg_list:
         tmlp_gallery.button(bg)
         tmlp_gallery.image("bg " + bg)
@@ -34,36 +34,36 @@ screen tmlp_background_gallery():
 
     frame background "tmlp_part_one_main_menu":
         if tmlp_gallery_mode == "tmlp_cg":
-            textbutton "Фоны": 
-                style "log_button" 
+            textbutton "Фоны":
+                style "log_button"
                 text_style "settings_link"
-                xalign 0.98 
-                yalign 0.02 
+                xalign 0.98
+                yalign 0.02
                 action (SetVariable("tmlp_gallery_mode", "tmlp_bg"), SetVariable("tmlp_page", 0), ShowMenu("tmlp_part_one_gallery"))
 
             hbox xalign 0.5 yalign 0.08:
-                text "Иллюстрации": 
-                    style "settings_link" 
-                    yalign 0.5 
+                text "Иллюстрации":
+                    style "settings_link"
+                    yalign 0.5
                     color "#ffffff"
 
         elif tmlp_gallery_mode == "tmlp_bg":
-            textbutton "Иллюстрации": 
-                style "log_button" 
-                text_style "settings_link" 
-                xalign 0.02 
-                yalign 0.02 
+            textbutton "Иллюстрации":
+                style "log_button"
+                text_style "settings_link"
+                xalign 0.02
+                yalign 0.02
                 action (SetVariable("tmlp_gallery_mode", "tmlp_cg"), SetVariable("tmlp_page", 0), ShowMenu("tmlp_part_one_gallery"))
 
             hbox xalign 0.5 yalign 0.08:
-                text "Фоны": 
-                    style "settings_link" 
-                    yalign 0.5 
+                text "Фоны":
+                    style "settings_link"
+                    yalign 0.5
                     color "#ffffff"
 
-        textbutton "НАЗАД": 
-            style "log_button" 
-            text_style "settings_link" 
+        textbutton "НАЗАД":
+            style "log_button"
+            text_style "settings_link"
             xalign 0.1
             ypos 960
             action [Hide("tmlp_part_one_gallery"), ShowMenu("tmlp_part_one_main_menu")]
@@ -83,7 +83,7 @@ screen tmlp_background_gallery():
 
                         elif tmlp_gallery_mode == "tmlp_bg":
                             _t = im.Crop("tmlp/images/bg/part1/"+tmlp_gallery_table[n]+".png" , (0, 0, 1920, 1080))
-                            
+
                         th = im.Scale(_t, 320, 180)
 
                         tmlp_img = im.Composite((336,196),(8,8),im.Alpha(th, 0.9),(0,0), im.Image("tmlp/images/gui/save_load/main_menu_part_one/save_load_button_idle.png"))
@@ -103,15 +103,15 @@ screen tmlp_background_gallery():
             imagebutton:
                 idle "tmlp/images/gui/music_room/previous.png"
                 hover "tmlp/images/gui/music_room/previous_part_one.png"
-                yalign 0.5 
-                xalign 0.01 
+                yalign 0.5
+                xalign 0.01
                 action (SetVariable("tmlp_page", tmlp_page - 1), ShowMenu("tmlp_part_one_gallery"))
 
-        imagebutton: 
+        imagebutton:
             idle "tmlp/images/gui/music_room/next.png"
             hover "tmlp/images/gui/music_room/next_part_one.png"
-            yalign 0.5 
-            xalign 0.99 
+            yalign 0.5
+            xalign 0.99
             action (SetVariable("tmlp_page", tmlp_next_page), ShowMenu("tmlp_part_one_gallery"))
 
         python:
@@ -125,7 +125,7 @@ screen tmlp_background_gallery():
 
             tmlp_pages = str(tmlp_page + 1) + "/" + str(int(abc(tmlp_len_table, tmlp_cells)))
 
-        text tmlp_pages: 
-            style "settings_link" 
-            xalign 0.015 
+        text tmlp_pages:
+            style "settings_link"
+            xalign 0.015
             yalign 0.92

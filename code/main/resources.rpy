@@ -1,4 +1,4 @@
-﻿init python:
+﻿﻿init python:
     from random import Random
     from os import path
 
@@ -127,7 +127,7 @@
 
     def tmlp_set_mode_adv():
         nvl_clear()
-        
+
         global menu
         menu = renpy.display_menu
 
@@ -136,16 +136,16 @@
 
     def tmlp_set_mode_nvl():
         nvl_clear()
-        
+
         global menu
         menu = nvl_menu
-        
+
         global tmlp_narrator
         global tmlp_th
 
         tmlp_narrator_nvl = tmlp_narrator
         th_nvl = tmlp_th
-        
+
         for character_name in store.tmlp_names_list:
             tmlp_char_define(character_name, True)
 
@@ -212,7 +212,7 @@
     def tmlp_set_time(timeofday, sprite_time=None):
         if sprite_time is None:
             sprite_time = timeofday
-        
+
         renpy.block_rollback()
         persistent.timeofday = timeofday
         persistent.sprite_time = sprite_time

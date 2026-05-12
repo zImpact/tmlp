@@ -1,24 +1,24 @@
 screen tmlp_preferences():
     tag menu
     modal True
-    
+
     $ tmlp_bar_null = Frame((TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/bar_null.png"), 36, 36)
     $ tmlp_bar_full = Frame((TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/bar_full.png"), 36, 36)
 
     window:
         background TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/preferences_bg.jpg"
 
-        text "[TMLP_PREFERENCES_TEXT]": 
+        text "[TMLP_PREFERENCES_TEXT]":
             style "tmlp_settings_link"
-            xalign 0.5 
-            yalign 0.08 
+            xalign 0.5
+            yalign 0.08
             color "#ffffff"
 
-        textbutton "[TMLP_RETURN_TEXT]": 
-            style "tmlp_log_button" 
-            text_style "tmlp_settings_link" 
-            xalign 0.015 
-            yalign 0.92 
+        textbutton "[TMLP_RETURN_TEXT]":
+            style "tmlp_log_button"
+            text_style "tmlp_settings_link"
+            xalign 0.015
+            yalign 0.92
             action Return()
 
         side "c b r":
@@ -42,7 +42,7 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "[TMLP_DISPLAY_PREFERENCES_FULLSCREEN_TEXT]": 
+                        textbutton "[TMLP_DISPLAY_PREFERENCES_FULLSCREEN_TEXT]":
                             style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action Preference("display", "fullscreen")
@@ -55,7 +55,7 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "[TMLP_DISPLAY_PREFERENCES_WINDOW_TEXT]": 
+                        textbutton "[TMLP_DISPLAY_PREFERENCES_WINDOW_TEXT]":
                             style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action Preference("display", "window")
@@ -73,8 +73,8 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "[TMLP_SKIP_PREFERENCES_ALL_TEXT]": 
-                            style "tmlp_log_button" 
+                        textbutton "[TMLP_SKIP_PREFERENCES_ALL_TEXT]":
+                            style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action Preference("skip", "all")
 
@@ -86,17 +86,17 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "[TMLP_SKIP_PREFERENCES_SEEN_TEXT]": 
-                            style "tmlp_log_button" 
+                        textbutton "[TMLP_SKIP_PREFERENCES_SEEN_TEXT]":
+                            style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action Preference("skip", "seen")
 
                 text "Громкость":
-                    style "tmlp_settings_header_" + persistent.timeofday                    
+                    style "tmlp_settings_header_" + persistent.timeofday
                     xalign 0.5
 
                 grid 2 1 xfill True:
-                    textbutton "Музыка": 
+                    textbutton "Музыка":
                         style "tmlp_log_button"
                         text_style "tmlp_settings_text_" + persistent.timeofday
                         action NullAction()
@@ -104,60 +104,60 @@ screen tmlp_preferences():
 
                     bar:
                         value Preference("music volume")
-                        left_bar tmlp_bar_full 
-                        right_bar tmlp_bar_null 
-                        thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                        hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                        xmaximum 1.35 
-                        ymaximum 36 
-                        xpos -0.55
-
-                grid 2 1 xfill True:
-                    textbutton "Звуки": 
-                        style "tmlp_log_button"
-                        text_style "tmlp_settings_text_" + persistent.timeofday
-                        action NullAction()
-                        xpos 0.1
-
-                    bar: 
-                        value Preference("sound volume") 
-                        left_bar tmlp_bar_full 
-                        right_bar tmlp_bar_null 
-                        thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                        hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                        xmaximum 1.35 
+                        left_bar tmlp_bar_full
+                        right_bar tmlp_bar_null
+                        thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                        hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                        xmaximum 1.35
                         ymaximum 36
                         xpos -0.55
 
                 grid 2 1 xfill True:
-                    textbutton "Эмбиент": 
+                    textbutton "Звуки":
                         style "tmlp_log_button"
                         text_style "tmlp_settings_text_" + persistent.timeofday
                         action NullAction()
                         xpos 0.1
 
-                    bar: 
-                        value Preference("voice volume") 
-                        left_bar tmlp_bar_full 
-                        right_bar tmlp_bar_null 
+                    bar:
+                        value Preference("sound volume")
+                        left_bar tmlp_bar_full
+                        right_bar tmlp_bar_null
                         thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
-                        hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                        xmaximum 1.35 
-                        ymaximum 36 
+                        hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                        xmaximum 1.35
+                        ymaximum 36
+                        xpos -0.55
+
+                grid 2 1 xfill True:
+                    textbutton "Эмбиент":
+                        style "tmlp_log_button"
+                        text_style "tmlp_settings_text_" + persistent.timeofday
+                        action NullAction()
+                        xpos 0.1
+
+                    bar:
+                        value Preference("voice volume")
+                        left_bar tmlp_bar_full
+                        right_bar tmlp_bar_null
+                        thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                        hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                        xmaximum 1.35
+                        ymaximum 36
                         xpos -0.55
 
                 text "Скорость текста":
                     style "tmlp_settings_header_" + persistent.timeofday
                     xalign 0.5
 
-                bar: 
-                    value Preference("text speed") 
-                    left_bar tmlp_bar_full 
-                    right_bar tmlp_bar_null 
-                    thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                    hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                    xalign 0.5 
-                    xmaximum 0.8 
+                bar:
+                    value Preference("text speed")
+                    left_bar tmlp_bar_full
+                    right_bar tmlp_bar_null
+                    thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                    hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                    xalign 0.5
+                    xmaximum 0.8
                     ymaximum 36
 
                 text "Автопереход":
@@ -173,7 +173,7 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "Включить": 
+                        textbutton "Включить":
                             style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action Preference("auto-forward after click", "enable")
@@ -186,7 +186,7 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "Выключить": 
+                        textbutton "Выключить":
                             style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action [
@@ -198,14 +198,14 @@ screen tmlp_preferences():
                     style "tmlp_settings_header_" + persistent.timeofday
                     xalign 0.5
 
-                bar: 
-                    value Preference("auto-forward time") 
-                    left_bar tmlp_bar_full 
-                    right_bar tmlp_bar_null 
-                    thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                    hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png" 
-                    xalign 0.5 
-                    xmaximum 0.8 
+                bar:
+                    value Preference("auto-forward time")
+                    left_bar tmlp_bar_full
+                    right_bar tmlp_bar_null
+                    thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                    hover_thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/htumb.png"
+                    xalign 0.5
+                    xmaximum 0.8
                     ymaximum 36
 
                 text "[TMLP_FONT_SIZE_PREFERENCES_TEXT]":
@@ -234,60 +234,60 @@ screen tmlp_preferences():
                         else:
                             null width 22
 
-                        textbutton "[TMLP_FONT_SIZE_PREFERENCES_LARGE_TEXT]": 
+                        textbutton "[TMLP_FONT_SIZE_PREFERENCES_LARGE_TEXT]":
                             style "tmlp_log_button"
                             text_style "tmlp_settings_text_" + persistent.timeofday
                             action SetField(persistent, "font_size", "large")
 
-            bar: 
-                value XScrollValue("preferences") 
-                left_bar "images/misc/none.png" 
-                right_bar "images/misc/none.png" 
-                thumb "images/misc/none.png" 
+            bar:
+                value XScrollValue("preferences")
+                left_bar "images/misc/none.png"
+                right_bar "images/misc/none.png"
+                thumb "images/misc/none.png"
                 hover_thumb "images/misc/none.png"
 
-            vbar: 
-                value YScrollValue("preferences") 
-                bottom_bar "images/misc/none.png" 
-                top_bar "images/misc/none.png" 
-                thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/vthumb.png" 
+            vbar:
+                value YScrollValue("preferences")
+                bottom_bar "images/misc/none.png"
+                top_bar "images/misc/none.png"
+                thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/vthumb.png"
                 thumb_offset -12
 
 screen tmlp_save():
     tag menu
     modal True
-    
+
     window:
         background TMLP_GUI_PATH + "save_load/" + persistent.timeofday + "/load_bg.png"
 
-        text "Сохранение": 
-            style "tmlp_settings_link" 
-            xalign 0.5 
-            yalign 0.08 
+        text "Сохранение":
+            style "tmlp_settings_link"
+            xalign 0.5
+            yalign 0.08
             color "#ffffff"
 
-        textbutton "[TMLP_RETURN_TEXT]": 
-            style "tmlp_log_button" 
-            text_style "tmlp_settings_link" 
-            xalign 0.015 
-            yalign 0.92 
+        textbutton "[TMLP_RETURN_TEXT]":
+            style "tmlp_log_button"
+            text_style "tmlp_settings_link"
+            xalign 0.015
+            yalign 0.92
             action Return()
 
-        textbutton "Сохранить": 
-            style "tmlp_log_button" 
+        textbutton "Сохранить":
+            style "tmlp_log_button"
             text_style "tmlp_settings_link"
-            yalign 0.92 
-            xalign 0.5 
+            yalign 0.92
+            xalign 0.5
             action [
                 DinFunctionCallback(tmlp_on_save_callback, selected_slot),
                 FileSave(selected_slot)
             ]
 
-        textbutton "[TMLP_DELETE_TEXT]": 
-            style "tmlp_log_button" 
-            text_style "tmlp_settings_link" 
-            yalign 0.92 
-            xalign 0.97 
+        textbutton "[TMLP_DELETE_TEXT]":
+            style "tmlp_log_button"
+            text_style "tmlp_settings_link"
+            yalign 0.92
+            xalign 0.97
             action FileDelete(selected_slot)
 
         grid 4 3:
@@ -315,42 +315,42 @@ screen tmlp_save():
                             style "file_picker_text"
                             xpos 15
                             ypos 15
-    
+
 screen tmlp_load():
     tag menu
     modal True
-    
+
     window:
         background TMLP_GUI_PATH + "save_load/" + persistent.timeofday + "/load_bg.png"
 
-        text "[TMLP_LOADING_TEXT]": 
-            style "tmlp_settings_link" 
-            xalign 0.5 
-            yalign 0.08 
+        text "[TMLP_LOADING_TEXT]":
+            style "tmlp_settings_link"
+            xalign 0.5
+            yalign 0.08
             color "#ffffff"
 
-        textbutton "[TMLP_RETURN_TEXT]": 
-            style "tmlp_log_button" 
-            text_style "tmlp_settings_link" 
-            xalign 0.015 
-            yalign 0.92 
+        textbutton "[TMLP_RETURN_TEXT]":
+            style "tmlp_log_button"
+            text_style "tmlp_settings_link"
+            xalign 0.015
+            yalign 0.92
             action Return()
 
-        textbutton "[TMLP_LOAD_TEXT]": 
-            style "tmlp_log_button" 
-            text_style "tmlp_settings_link" 
-            yalign 0.92 
-            xalign 0.5 
+        textbutton "[TMLP_LOAD_TEXT]":
+            style "tmlp_log_button"
+            text_style "tmlp_settings_link"
+            yalign 0.92
+            xalign 0.5
             action [
                 DinFunctionCallback(tmlp_on_load_callback, selected_slot),
                 FileLoad(selected_slot, confirm=False)
             ]
-        
-        textbutton "[TMLP_DELETE_TEXT]": 
-            style "tmlp_log_button" 
+
+        textbutton "[TMLP_DELETE_TEXT]":
+            style "tmlp_log_button"
             text_style "tmlp_settings_link"
             yalign 0.92
-            xalign 0.97 
+            xalign 0.97
             action FileDelete(selected_slot)
 
         grid 4 3:
@@ -377,9 +377,9 @@ screen tmlp_load():
                         text "%s." % i + FileTime(i, format=TMLP_SAVE_LOAD_FORMAT, empty=TMLP_SAVE_LOAD_EMPTY_LABEL) + "\n" + FileSaveName(i):
                             style "file_picker_text"
                             xpos 15
-                            ypos 15                  
-                                
-screen tmlp_say(what, who):    
+                            ypos 15
+
+screen tmlp_say(what, who):
     window:
         background None
         id "window"
@@ -390,9 +390,9 @@ screen tmlp_say(what, who):
                 ypos 866
 
             imagebutton:
-                auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/hide_%s.png" 
-                xpos 1508 
-                ypos 883 
+                auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/hide_%s.png"
+                xpos 1508
+                ypos 883
                 action HideInterface()
 
             imagebutton:
@@ -403,50 +403,50 @@ screen tmlp_say(what, who):
 
             imagebutton:
                 auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/menu_%s.png"
-                xpos 1625 
-                ypos 883 
+                xpos 1625
+                ypos 883
                 action ShowMenu("tmlp_game_menu_selector")
 
             imagebutton:
                 auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/load_%s.png"
-                xpos 1682 
-                ypos 883 
+                xpos 1682
+                ypos 883
                 action ShowMenu("tmlp_load")
 
             imagebutton:
-                auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/backward_%s.png" 
-                xpos 38 
-                ypos 924 
+                auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/backward_%s.png"
+                xpos 38
+                ypos 924
                 action ShowMenu("tmlp_text_history")
 
             if not config.skipping:
                 imagebutton:
                     auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/forward_%s.png"
-                    xpos 1768 
-                    ypos 924 
+                    xpos 1768
+                    ypos 924
                     action Skip()
 
             else:
-                imagebutton: 
+                imagebutton:
                     auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/fast_forward_%s.png"
-                    xpos 1768 
-                    ypos 924 
+                    xpos 1768
+                    ypos 924
                     action Skip()
 
             text what:
-                id "what" 
-                xpos 194 
-                ypos 914 
-                xmaximum 1541 
+                id "what"
+                xpos 194
+                ypos 914
+                xmaximum 1541
                 size 30
                 line_spacing 1
 
             if who:
                 text who:
-                    id "who" 
-                    xpos 194 
-                    ypos 877 
-                    size 35 
+                    id "who"
+                    xpos 194
+                    ypos 877
+                    size 35
                     line_spacing 1
 
         elif persistent.font_size == "small":
@@ -479,39 +479,39 @@ screen tmlp_say(what, who):
                 action ShowMenu("tmlp_load")
 
             imagebutton:
-                auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/backward_%s.png" 
-                xpos 38 
-                ypos 949 
+                auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/backward_%s.png"
+                xpos 38
+                ypos 949
                 action ShowMenu("tmlp_text_history")
 
             if not config.skipping:
                 imagebutton:
                     auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/forward_%s.png"
-                    xpos 1768 
-                    ypos 949 
+                    xpos 1768
+                    ypos 949
                     action Skip()
 
             else:
                 imagebutton:
                     auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/fast_forward_%s.png"
-                    xpos 1768 
-                    ypos 949 
+                    xpos 1768
+                    ypos 949
                     action Skip()
 
             text what:
-                id "what" 
-                xpos 194 
-                ypos 964 
-                xmaximum 1541 
+                id "what"
+                xpos 194
+                ypos 964
+                xmaximum 1541
                 size 25
                 line_spacing 2
 
             if who:
                 text who:
-                    id "who" 
-                    xpos 194 
-                    ypos 931 
-                    size 28 
+                    id "who"
+                    xpos 194
+                    ypos 931
+                    size 28
                     line_spacing 2
 
 screen tmlp_nvl(items, dialogue):
@@ -524,7 +524,7 @@ screen tmlp_nvl(items, dialogue):
         right_padding 175
         bottom_padding 150
         top_padding 150
-    
+
         has vbox
 
         for who, what, who_id, what_id, window_id in dialogue:
@@ -535,22 +535,22 @@ screen tmlp_nvl(items, dialogue):
 
                 if persistent.font_size == "large":
                     if who is not None:
-                        text who: 
-                            id who_id 
+                        text who:
+                            id who_id
                             size 39
 
                     text what:
-                        id what_id 
+                        id what_id
                         size 32
 
                 elif persistent.font_size == "small":
                     if who is not None:
-                        text who: 
-                            id who_id 
+                        text who:
+                            id who_id
                             size 35
 
                     text what:
-                        id what_id 
+                        id what_id
                         size 28
         if items:
             vbox:
@@ -570,7 +570,7 @@ screen tmlp_nvl(items, dialogue):
 
     imagebutton:
         auto TMLP_GUI_PATH + "dialogue_box/" + persistent.timeofday + "/backward_%s.png"
-        xpos 38 
+        xpos 38
         ypos 924
         action ShowMenu("tmlp_text_history")
 
@@ -631,11 +631,11 @@ screen tmlp_game_menu_selector():
                 clicked ShowMenu("tmlp_preferences")
 
             hotspot(0, 343, 660, 65):
-                focus_mask None 
+                focus_mask None
                 action [
                     Function(tmlp_screens_diact),
                     ShowMenu("main_menu")
-                ]    
+                ]
 
 screen tmlp_quit():
     tag menu
@@ -647,9 +647,9 @@ screen tmlp_quit():
     elif tmlp_lock_quit_game_main_menu_var:
         timer 0.01 action Quit(confirm=False)
 
-    else:    
+    else:
         add TMLP_GUI_PATH + "save_load/" + persistent.timeofday + "/load_bg.png"
-            
+
         text "Вы действительно \nхотите выйти?":
             font tmlp_link_font
             size 100
@@ -658,7 +658,7 @@ screen tmlp_quit():
             yalign 0.33
             antialias True
             kerning 2
-            
+
         textbutton "[TMLP_YES_TEXT]":
             style "tmlp_settings_header_main_menu_quit"
             text_style "tmlp_settings_header_main_menu_quit"
@@ -668,7 +668,7 @@ screen tmlp_quit():
                 Function(tmlp_screens_diact),
                 ShowMenu("main_menu")
             ]
-            
+
         textbutton "[TMLP_NO_TEXT]":
             style "tmlp_settings_header_main_menu_quit"
             text_style "tmlp_settings_header_main_menu_quit"
@@ -684,28 +684,28 @@ screen tmlp_yesno_prompt(yes_action, message, no_action):
 
     add TMLP_GUI_PATH + "yes_no/" + persistent.timeofday + "/yes_no.png"
 
-    text _(message): 
-        text_align 0.5 
-        yalign 0.46 
+    text _(message):
+        text_align 0.5
+        yalign 0.46
         xalign 0.5
         color TMLP_YESNO_PROMPT_MESSAGE_COLOR[persistent.timeofday]
-        font tmlp_header_font 
+        font tmlp_header_font
         size 30
 
-    textbutton "[TMLP_YES_TEXT]": 
-        text_size 60 
-        style "tmlp_log_button" 
-        text_style "tmlp_settings_link" 
-        yalign 0.65 
-        xalign 0.3 
+    textbutton "[TMLP_YES_TEXT]":
+        text_size 60
+        style "tmlp_log_button"
+        text_style "tmlp_settings_link"
+        yalign 0.65
+        xalign 0.3
         action yes_action
 
-    textbutton "[TMLP_NO_TEXT]": 
-        text_size 60 
-        style "tmlp_log_button" 
-        text_style "tmlp_settings_link" 
-        yalign 0.65 
-        xalign 0.7 
+    textbutton "[TMLP_NO_TEXT]":
+        text_size 60
+        style "tmlp_log_button"
+        text_style "tmlp_settings_link"
+        yalign 0.65
+        xalign 0.7
         action no_action
 
 screen tmlp_text_history():
@@ -741,7 +741,7 @@ screen tmlp_text_history():
         right_padding 75
         bottom_padding 120
         top_padding 120
-        
+
         viewport id "tmlp_text_history_screen":
             draggable True
             mousewheel True
@@ -763,19 +763,19 @@ screen tmlp_text_history():
 
                 textbutton h.what:
                     text_size history_text_size
-                    style "tmlp_log_button" 
-                    text_style "tmlp_text_history" 
-                    xpos 100                    
+                    style "tmlp_log_button"
+                    text_style "tmlp_text_history"
+                    xpos 100
                     xmaximum xmax
                     text_hover_color TMLP_TEXT_HISTORY_WHAT_COLOR_HOVER[persistent.timeofday]
                     action RollbackToIdentifier(h.rollback_identifier)
-        
+
         vbar:
             value YScrollValue("tmlp_text_history_screen")
             bottom_bar "images/misc/none.png"
             top_bar "images/misc/none.png"
             thumb TMLP_GUI_PATH + "preferences/" + persistent.timeofday + "/vthumb.png"
-            xoffset 1700  
+            xoffset 1700
 
 screen tmlp_choice(items):
     modal True
@@ -819,9 +819,9 @@ screen tmlp_choice(items):
 screen tmlp_help():
     tag menu
     modal True
-    
+
     add TMLP_GUI_PATH + "save_load/" + persistent.timeofday + "/load_bg.png"
-    
+
     text "Информация":
         font tmlp_link_font
         size 70
@@ -829,35 +829,35 @@ screen tmlp_help():
         ypos 33
         antialias True
         kerning 2
-            
+
     textbutton "Группа VK":
-        style "tmlp_log_button" 
+        style "tmlp_log_button"
         text_style "tmlp_settings_header_main_menu_quit"
         xalign 0.5
         ypos 350
         action OpenURL("https://vk.com/public176281709")
-            
+
     textbutton "Бессонница":
-        style "tmlp_log_button" 
+        style "tmlp_log_button"
         text_style "tmlp_settings_header_main_menu_quit"
         xalign 0.5
         ypos 500
-        action OpenURL("https://steamcommunity.com/sharedfiles/filedetails/?id=1636163628")    
-            
+        action OpenURL("https://steamcommunity.com/sharedfiles/filedetails/?id=1636163628")
+
     textbutton "Петля времени":
-        style "tmlp_log_button" 
+        style "tmlp_log_button"
         text_style "tmlp_settings_header_main_menu_quit"
         xalign 0.5
         ypos 650
-        action OpenURL("https://youtu.be/x2KBAuBKWL8")        
-            
+        action OpenURL("https://youtu.be/x2KBAuBKWL8")
+
     add TMLP_GUI_PATH + "logowhite_hover.png":
         xpos 1520
         ypos 890
 
-    textbutton "[TMLP_RETURN_TEXT]": 
-        style "tmlp_log_button" 
-        text_style "tmlp_settings_link" 
-        xalign 0.015 
-        yalign 0.92 
+    textbutton "[TMLP_RETURN_TEXT]":
+        style "tmlp_log_button"
+        text_style "tmlp_settings_link"
+        xalign 0.015
+        yalign 0.92
         action Return()

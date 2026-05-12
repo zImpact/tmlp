@@ -23,7 +23,7 @@ screen tmlp_music_room():
             action Return()
 
         hbox xalign 0.5 yalign 0.06:
-            text "{font=[gotham_pro_medium]}Музыка{/font}": 
+            text "{font=[gotham_pro_medium]}Музыка{/font}":
                 yalign 0.5
 
         side "c b r":
@@ -34,7 +34,7 @@ screen tmlp_music_room():
                 draggable True
                 mousewheel True
                 scrollbars None
-                
+
                 grid 1 len(tmlp_part_one_music_box):
                     for name, track in sorted(tmlp_part_one_music_box.iteritems()):
                         textbutton name:

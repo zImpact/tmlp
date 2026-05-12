@@ -4,7 +4,7 @@ screen tmlp_main_menu():
 
     key "game_menu":
         action NullAction()
-        
+
     key "K_F1":
         action NullAction()
 
@@ -27,7 +27,7 @@ screen tmlp_main_menu():
             Hide("tmlp_main_menu"),
             Start("tmlp_prologue")
         ]
-            
+
     textbutton "Загрузить игру":
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
@@ -38,7 +38,7 @@ screen tmlp_main_menu():
             Hide("tmlp_main_menu"),
             ShowMenu("tmlp_load_main_menu")
         ]
-           
+
     textbutton "Дополнительно":
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
@@ -59,7 +59,7 @@ screen tmlp_main_menu():
             Hide("tmlp_main_menu"),
             ShowMenu("tmlp_preferences_main_menu")
         ]
-            
+
     textbutton "Выход":
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
