@@ -1,4 +1,4 @@
-﻿﻿init python:
+init python:
     from random import Random
     from os import path
 
@@ -41,10 +41,6 @@
     tmlp_names["tmlp_din"] = "Дин"
     store.tmlp_names_list.append("tmlp_din")
 
-    tmlp_colors["tmlp_pi_pyan"] = {"speaker_color": "#551313"} # TODO: цвет поменять
-    tmlp_names["tmlp_pi_pyan"] = "Пионер"
-    store.tmlp_names_list.append("tmlp_pi_pyan")
-
     tmlp_colors["tmlp_pyan"] = {"speaker_color": "#551313"} # TODO: цвет поменять
     tmlp_names["tmlp_pyan"] = "Пьяница"
     store.tmlp_names_list.append("tmlp_pyan")
@@ -53,14 +49,6 @@
     tmlp_names["tmlp_pacifist"] = "Пацифист"
     store.tmlp_names_list.append("tmlp_pacifist")
 
-    tmlp_colors["tmlp_un"] = {"speaker_color": "#aa64d9"}
-    tmlp_names["tmlp_un"] = "Лена"
-    store.tmlp_names_list.append("tmlp_un")
-
-    tmlp_colors["tmlp_dv"] = {"speaker_color": "#ffaa00"}
-    tmlp_names["tmlp_dv"] = "Двачевская"
-    store.tmlp_names_list.append("tmlp_dv")
-
     tmlp_colors["tmlp_sl"] = {"speaker_color": "#ffd200"}
     tmlp_names["tmlp_sl"] = "Славяна"
     store.tmlp_names_list.append("tmlp_sl")
@@ -68,6 +56,7 @@
     def tmlp_char_define(character_name, is_nvl=False):
         global DynamicCharacter
         global nvl
+        global tmlp_store
         global tmlp_speaker_color
         tmlp_gl = globals()
 
@@ -88,7 +77,7 @@
             return
 
         if character_name == "tmlp_th":
-            if  is_nvl:
+            if is_nvl:
                 tmlp_gl["tmlp_th"] = Character(
                     None,
                     kind=nvl,
@@ -232,6 +221,10 @@ init:
     image tmlp_main_menu_bg_theme_3 = Movie(fps=45, play=TMLP_GUI_PATH + "main_menu/theme_3.webm")
 
     image tmlp_stars_anim = tmlp_frame_animation("tmlp/images/bg/anim_bg/tmlp_stars/stars", 2, 1.5, True, Dissolve(1.5))
+
+    $ tmlp_lock_quit_game_main_menu_var = True
+    $ tmlp_lock_quit = False
+    $ tmlp_lock_quick_menu = False
 
     $ tmlp_menu_themes = [
         {

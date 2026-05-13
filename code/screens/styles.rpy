@@ -19,3 +19,8 @@ init python:
     style.tmlp_main_menu_theme_3_style.size = 70
     style.tmlp_main_menu_theme_3_style.color = "#d1d1d1"
     style.tmlp_main_menu_theme_3_style.hover_color = "#ffffff"
+
+    style.tmlp_text_style = Style(style.default)
+    style.tmlp_text_style.color = "#e2c778"
+    style.tmlp_text_style.drop_shadow = (2, 2)
+    style.tmlp_text_style.drop_shadow_color = "#000"

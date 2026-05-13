@@ -279,7 +279,7 @@ screen tmlp_save():
             yalign 0.92
             xalign 0.5
             action [
-                DinFunctionCallback(tmlp_on_save_callback, selected_slot),
+                TmlpFunctionCallback(tmlp_on_save_callback, selected_slot),
                 FileSave(selected_slot)
             ]
 
@@ -342,7 +342,7 @@ screen tmlp_load():
             yalign 0.92
             xalign 0.5
             action [
-                DinFunctionCallback(tmlp_on_load_callback, selected_slot),
+                TmlpFunctionCallback(tmlp_on_load_callback, selected_slot),
                 FileLoad(selected_slot, confirm=False)
             ]
 

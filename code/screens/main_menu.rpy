@@ -13,26 +13,24 @@ screen tmlp_main_menu():
     text "Петля времени":
         font tmlp_gotham_pro_medium
         size 85
-        text_align 0.5
         xalign 0.5
         ypos 25
 
-    textbutton "Начать игру":
+    textbutton "Начать":
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
-        text_align 0.5
         ypos 250
         action [
-            Hide("tmlp_main_menu"),
-            Start("tmlp_prologue")
+            Hide("tmlp_main_menu", Dissolve(1.5)),
+            SetVariable("tmlp_lock_quit_game_main_menu_var", False),
+            Start("tmpl_main_scenario")
         ]
 
-    textbutton "Загрузить игру":
+    textbutton "Загрузить":
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
-        text_align 0.5
         ypos 395
         action [
             Hide("tmlp_main_menu"),
@@ -43,7 +41,6 @@ screen tmlp_main_menu():
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
-        text_align 0.5
         ypos 540
         action [
             Hide("tmlp_main_menu"),
@@ -64,7 +61,6 @@ screen tmlp_main_menu():
         style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         text_style "tmlp_main_menu_theme_" + persistent.tmlp_theme_number + "_style"
         xalign 0.5
-        text_align 0.5
         ypos 830
         action [
             Hide("tmlp_main_menu"),
