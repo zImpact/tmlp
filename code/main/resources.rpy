@@ -19,8 +19,8 @@
                 renpy.image(
                     TMLP_PREFIX + file_path,
                     ConditionSwitch(
-                        "persistent.sprite_time == 'sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
-                        "persistent.sprite_time == 'night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
+                        "persistent.sprite_time=='sunset'", im.MatrixColor(file_name, im.matrix.tint(0.94, 0.82, 1.0)),
+                        "persistent.sprite_time=='night'", im.MatrixColor(file_name, im.matrix.tint(0.63, 0.78, 0.82)),
                         True, file_name
                     )
                 )
