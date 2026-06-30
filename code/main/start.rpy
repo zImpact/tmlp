@@ -9,18 +9,18 @@ init python:
 
 label tmlp_start:
     $ tmlp_random_menu_theme()
-    $ tmlp_set_time(OSD_TIMEOFDAY_PROLOGUE)
+    $ tmlp_set_time(TMLP_TIMEOFDAY_PROLOGUE)
     $ tmlp_onload("lock")
     $ tmlp_set_dynamic_cursor("main_menu")
     $ tmlp_screens_save_act()
     scene bg black with Dissolve(2)
     $ renpy.pause(0.5, hard=True)
-    scene osd_sky_day
-    show osd_intro_logo at truecenter
-    show osd_blank_skip
+    $ renpy.show(persistent.tmlp_main_menu_background)
+    show tmlp_intro_logo at truecenter
+    show tmlp_blank_skip
     with Dissolve(2)
     $ renpy.pause(0.5, hard=True) 
-    play sound osd_intro_sample
+    play sound tmlp_intro_sample
     $ renpy.pause(8, hard=True)
     scene bg black with Dissolve(2)
     $ renpy.pause(0.5, hard=True)

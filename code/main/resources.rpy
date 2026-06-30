@@ -216,12 +216,196 @@ init python:
 init:
     $ tmlp_reload_names()
 
-    image tmlp_main_menu_bg_theme_1 = TMLP_GUI_PATH + "main_menu/theme_1.png"
-    image tmlp_main_menu_bg_theme_2 = TMLP_GUI_PATH + "main_menu/theme_2.png"
+    image tmlp_blank_skip = renpy.display.behavior.ImageButton(Null(1920, 1080), Null(1920, 1080), clicked=[Jump("tmlp_after_intro")])
+
+    image tmlp_snow_layer0_img = TMLP_GUI_PATH + "main_menu/theme_2/tmlp_snow_layer0_img.png"
+    image tmlp_snow_layer1_img = TMLP_GUI_PATH + "main_menu/theme_2/tmlp_snow_layer1_img.png"
+    image tmlp_snow_layer2_img = TMLP_GUI_PATH + "main_menu/theme_2/tmlp_snow_layer2_img.png"
+    image tmlp_snow_layer3_img = TMLP_GUI_PATH + "main_menu/theme_2/tmlp_snow_layer3_img.png"
+    image tmlp_snow_layer0_anim:
+        contains:
+            "tmlp_snow_layer0_img"
+            tmlp_snow_move(8, 0.0, -0.05)
+
+        contains:
+            "tmlp_snow_layer0_img"
+            tmlp_snow_move(8, 0.25, -0.05)
+
+        contains:
+            "tmlp_snow_layer0_img"
+            tmlp_snow_move(8, 0.5, -0.05)
+
+        contains:
+            "tmlp_snow_layer0_img"
+            tmlp_snow_move(8, 0.75, -0.05)
+
+    image tmlp_snow_layer1_anim:
+        contains:
+            "tmlp_snow_layer1_img"
+            tmlp_snow_move(10, 0.0, 0.05, pause_time=0.5)
+
+        contains:
+            "tmlp_snow_layer1_img"
+            tmlp_snow_move(10, 0.25, 0.05, pause_time=0.5)
+
+        contains:
+            "tmlp_snow_layer1_img"
+            tmlp_snow_move(10, 0.5, 0.05, pause_time=0.5)
+
+        contains:
+            "tmlp_snow_layer1_img"
+            tmlp_snow_move(10, 0.75, 0.05, pause_time=0.5)
+
+    image tmlp_snow_layer2_anim:
+        contains:
+            "tmlp_snow_layer2_img"
+            tmlp_snow_move(15, 0.0, -0.05, pause_time=1.0)
+
+        contains:
+            "tmlp_snow_layer2_img"
+            tmlp_snow_move(15, 0.25, -0.05, pause_time=1.0)
+
+        contains:
+            "tmlp_snow_layer2_img"
+            tmlp_snow_move(15, 0.5, -0.05, pause_time=1.0)
+
+        contains:
+            "tmlp_snow_layer2_img"
+            tmlp_snow_move(15, 0.75, -0.05, pause_time=1.0)
+
+    image tmlp_snow_layer3_anim:
+        contains:
+            "tmlp_snow_layer3_img"
+            tmlp_snow_move(20, 0.0, 0.07)
+
+        contains:
+            "tmlp_snow_layer3_img"
+            tmlp_snow_move(20, 0.25, 0.07)
+
+        contains:
+            "tmlp_snow_layer3_img"
+            tmlp_snow_move(20, 0.5, 0.07)
+
+        contains:
+            "tmlp_snow_layer3_img"
+            tmlp_snow_move(20, 0.75, 0.07)
+
+    image tmlp_intro_logo = TMLP_GUI_PATH + "misc/intro_logo.png"
+    image tmlp_main_menu_bg_theme_1:
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_1.png"
+            tmlp_bus_moving()
+
+    image tmlp_main_menu_bg_theme_2_base:
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_2/tl_int_liaz_night_winter1.png"
+
+        contains:
+            "tmlp_snow_layer3_anim"
+
+        contains:
+            "tmlp_snow_layer2_anim"
+
+        contains:
+            "tmlp_snow_layer1_anim"
+
+        contains:
+            "tmlp_snow_layer0_anim"
+
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_2/tl_int_liaz_night_winter2.png"
+
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_2/tl_int_liaz_night_winter3.png"
+
+    image tmlp_main_menu_bg_theme_2_static:
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_2/tl_int_liaz_night_winter1.png"
+
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_2/tl_int_liaz_night_winter2.png"
+
+        contains:
+            TMLP_GUI_PATH + "main_menu/theme_2/tl_int_liaz_night_winter3.png"
+
+    image tmlp_main_menu_bg_theme_2_normal:
+        contains:
+            "tmlp_main_menu_bg_theme_2_base"
+            blur 3.5
+
+    image tmlp_main_menu_bg_theme_2_glitch_source:
+        contains:
+            "tmlp_main_menu_bg_theme_2_static"
+            blur 3.5
+
+    image tmlp_main_menu_bg_theme_2_glitch_1:
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=-28, yoffset=3)
+
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=24, yoffset=-2, alpha=0.55, gl_color_mask=(True, False, False, True))
+
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=-22, yoffset=2, alpha=0.5, gl_color_mask=(False, False, True, True))
+
+    image tmlp_main_menu_bg_theme_2_glitch_2:
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=18, yoffset=-8)
+
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=-32, yoffset=6, alpha=0.55, gl_color_mask=(False, True, False, True))
+
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=34, yoffset=-4, alpha=0.45, gl_color_mask=(True, False, False, True))
+
+    image tmlp_main_menu_bg_theme_2_glitch_3:
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=-42, yoffset=8)
+
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=36, yoffset=-5, alpha=0.6, gl_color_mask=(False, True, False, True))
+
+        contains:
+            Transform("tmlp_main_menu_bg_theme_2_glitch_source", xoffset=18, yoffset=4, alpha=0.55, gl_color_mask=(False, False, True, True))
+
+    image tmlp_main_menu_bg_theme_2_glitch_anim:
+        Null(1920, 1080)
+        pause 3.4
+        "tmlp_main_menu_bg_theme_2_glitch_1"
+        pause 0.05
+        "tmlp_main_menu_bg_theme_2_glitch_2"
+        pause 0.04
+        Null(1920, 1080)
+        pause 0.08
+        "tmlp_main_menu_bg_theme_2_glitch_3"
+        pause 0.05
+        Null(1920, 1080)
+        pause 2.4
+        "tmlp_main_menu_bg_theme_2_glitch_2"
+        pause 0.04
+        "tmlp_main_menu_bg_theme_2_glitch_1"
+        pause 0.05
+        Null(1920, 1080)
+        pause 0.12
+        "tmlp_main_menu_bg_theme_2_glitch_3"
+        pause 0.08
+        Null(1920, 1080)
+        repeat
+
+    image tmlp_main_menu_bg_theme_2:
+        contains:
+            "tmlp_main_menu_bg_theme_2_normal"
+
+        contains:
+            "tmlp_main_menu_bg_theme_2_glitch_anim"
+
     image tmlp_main_menu_bg_theme_3 = Movie(fps=45, play=TMLP_GUI_PATH + "main_menu/theme_3.webm")
+
+    image tmlp_main_menu_options_frame = ThldBlackRectangle(width=1804, height=1028, alpha=0.6)
 
     image tmlp_stars_anim = tmlp_frame_animation("tmlp/images/bg/anim_bg/tmlp_stars/stars", 2, 1.5, True, Dissolve(1.5))
 
+    $ tmlp_main_menu_var = True
     $ tmlp_lock_quit_game_main_menu_var = True
     $ tmlp_lock_quit = False
     $ tmlp_lock_quick_menu = False
@@ -260,4 +444,28 @@ init:
             linear 0.2 yoffset -1
             linear 0.25 yoffset 2
             linear 0.2 yoffset -1
+            repeat
+
+    transform tmlp_snow_move(time, start_pos, x_deviation=0.05, pause_time=0.0, fade_time=1.0):
+        truecenter
+        ypos -0.25 + 1.5 * start_pos
+        xpos 0.5 - x_deviation + 2 * x_deviation * start_pos
+        pause pause_time
+
+        block:
+            block:
+                alpha 1.0
+                parallel:
+                    linear(time * (1 - start_pos)) ypos 1.1 xpos (0.5 + x_deviation)
+
+                parallel:
+                    pause((time * (1 - start_pos)) - fade_time)
+                    linear fade_time alpha 0.0
+
+            block:
+                ypos -0.25
+                xpos 0.5 - x_deviation
+                alpha 1.0
+                linear(time * start_pos) ypos(-0.25 + 1.5 * start_pos) xpos(0.5 - x_deviation + 2 * x_deviation * start_pos)
+
             repeat
